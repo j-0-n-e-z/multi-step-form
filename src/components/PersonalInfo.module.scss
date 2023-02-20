@@ -1,0 +1,70 @@
+.formWrapper {
+	display: flex;
+  flex-direction: column;
+}
+
+.stepTitle {
+	font-size: 35px;
+	font-weight: bold;
+}
+
+.stepDescription {
+	margin-top: 10px;
+	color: hsl(231, 11%, 63%);
+	font-size: 18px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	margin-top: 40px;
+}
+
+.label {
+	font-size: 16px;
+	margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+	margin-bottom: 20px;
+	height: 45px;
+	text-indent: 10px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	font-weight: 500;
+	font-size: 17px;
+
+	&::placeholder {
+		color: hsl(231, 11%, 63%);
+	}
+
+	&:focus {
+		outline: none;
+		border: 1px solid black;
+	}
+}
+
+.submit {
+	margin-top: 60px;
+	width: 100px;
+	align-self: end;
+	background-color: #044c88;
+	color: #fff;
+	border: none;
+	width: 120px;
+	border-radius: 10px;
+	padding: 15px 20px;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.labelError {
+  font-weight: 500;
+  color: red;
+}
+
+.inputError {
+  border: 1px solid red;
+}

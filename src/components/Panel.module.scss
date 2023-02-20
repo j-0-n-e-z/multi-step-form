@@ -1,0 +1,16 @@
+.panel {
+  display: flex;
+  height: 600px;
+  width: 1000px;
+  background:#fff;
+  border-radius: 20px;
+  box-shadow: 1px 1px 5px hsl(229, 24%, 87%);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stepForm {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
