@@ -1,30 +1,28 @@
-.formWrapper {
+.form {
 	display: flex;
-  flex-direction: column;
+	justify-content: center;
+	flex-direction: column;
+	width: 500px;
+	height: 100%;	
 }
 
-.stepTitle {
+.title {
 	font-size: 35px;
 	font-weight: bold;
 }
 
-.stepDescription {
+.description {
 	margin-top: 10px;
+	margin-bottom: 40px;
 	color: hsl(231, 11%, 63%);
 	font-size: 18px;
-}
-
-.form {
-	display: flex;
-	flex-direction: column;
-	margin-top: 40px;
 }
 
 .label {
 	font-size: 16px;
 	margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .input {
@@ -47,9 +45,8 @@
 }
 
 .submit {
-	margin-top: 60px;
-	width: 100px;
 	align-self: end;
+	justify-self: end;
 	background-color: #044c88;
 	color: #fff;
 	border: none;
@@ -61,10 +58,10 @@
 }
 
 .labelError {
-  font-weight: 500;
-  color: red;
+	font-weight: 500;
+	color: red;
 }
 
 .inputError {
-  border: 1px solid red;
+	border: 1px solid red;
 }

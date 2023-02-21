@@ -1,59 +1,58 @@
 .sidebar {
-  padding: 35px;
+	padding: 35px;
 	width: 274px;
-  height: 568px;
-  background-image: url(./images/bg-sidebar-desktop.svg);
-  margin-left: 18px;
+	height: 568px;
+	background-image: url(./images/bg-sidebar-desktop.svg);
+	margin-left: 18px;
 }
 
 .sidebar * {
-  color: #fff;
+	color: #fff;
 }
 
 .step {
 	display: flex;
-  align-items: center;
-  margin-bottom: 20px;
+	align-items: center;
+	margin-bottom: 20px;
 }
 
 .stepNum {
-  width: 35px;
-  height: 35px;
-  border-radius: 100%;
-  background-color: hsl(243, 100%, 62%);
-  border: 2px solid hsl(228, 100%, 84%);
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  margin-right: 20px;
+	width: 35px;
+	height: 35px;
+	border-radius: 100%;
+	background-color: hsl(243, 100%, 62%);
+	border: 2px solid hsl(228, 100%, 84%);
+	font-size: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	margin-right: 20px;
+}
 
-  &:focus {
-    background-color: #bbe2fc;
-    border: 2px solid #bbe2fc;
-    color: hsl(213, 96%, 18%);
-    outline: none;
-  }
+.currentStep {
+	background-color: #bbe2fc;
+	border: 2px solid #bbe2fc;
+	color: hsl(213, 96%, 18%);
+	outline: none;
 }
 
 .stepTitle {
-  text-transform: uppercase;
-  font-size: 13px;
-  color: hsl(231, 11%, 63%);
-  margin-bottom: 3px;
+	text-transform: uppercase;
+	font-size: 13px;
+	color: hsl(231, 11%, 63%);
+	margin-bottom: 3px;
 }
 
 .stepDescription {
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 15px;
-  letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 15px;
+	letter-spacing: 1px;
 }
 
 .stepInfo {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
 }
-
