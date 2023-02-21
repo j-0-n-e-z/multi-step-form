@@ -1,0 +1,25 @@
+.wrapper {
+  flex: 1;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  margin-bottom: 30px;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.text {
+  color: #999;
+  line-height: 30px;
+  text-align: center;
+}
+

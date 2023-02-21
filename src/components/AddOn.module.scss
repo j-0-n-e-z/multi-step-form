@@ -1,0 +1,36 @@
+.addOn {
+	display: flex;
+	border: 1px solid #999;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.addOnSelected {
+	border: 1px solid hsl(243, 100%, 62%);
+}
+
+.addOnInfo {
+	margin-left: 20px;
+}
+
+.addOnTitle {
+	font-weight: bold;
+}
+
+.addOnDescription {
+	color: #999;
+	font-size: 16px;
+	margin-top: 5px;
+}
+
+.addOnPrice {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	color: hsl(243, 100%, 62%);
+}
+
+.checkbox {
+	width: 20px;
+	accent-color: hsl(243, 100%, 62%);
+}

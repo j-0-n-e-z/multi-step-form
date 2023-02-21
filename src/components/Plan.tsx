@@ -2,6 +2,7 @@ import { IPlan, ISelectedPlan } from './Panel'
 import cn from 'classnames'
 import { FC } from 'react'
 import styles from './Plan.module.scss'
+import { getMoneyPerPeriodString } from '../helpers'
 
 export const Plan: FC<PlanPropsType> = ({
 	plan,
@@ -9,27 +10,29 @@ export const Plan: FC<PlanPropsType> = ({
 	isSelected,
 	isMonthly
 }) => {
+	const handleOnClickOrFocus = () => {
+		setSelectedPlan({
+			title: plan.title,
+			price: isMonthly ? plan.price.monthly : plan.price.yearly,
+			isMonthly
+		})
+	}
+
 	return (
 		<button
 			type='button'
 			className={cn(styles.plan, { [styles.selected]: isSelected })}
-			onClick={() =>
-				setSelectedPlan({
-					title: plan.title,
-					price: isMonthly ? plan.price.monthly : plan.price.yearly
-				})
-			}
-			onFocus={() =>
-				setSelectedPlan({
-					title: plan.title,
-					price: isMonthly ? plan.price.monthly : plan.price.yearly
-				})
-			}
+			onClick={() => handleOnClickOrFocus()}
+			onFocus={() => handleOnClickOrFocus()}
 		>
 			<img src={plan.icon} alt={plan.title} />
 			<div className={styles.planTitle}>{plan.title}</div>
 			<div className={styles.price}>
-				{isMonthly ? plan.price.monthly : plan.price.yearly}
+				{getMoneyPerPeriodString(
+					isMonthly,
+					plan.price.monthly,
+					plan.price.yearly
+				)}
 			</div>
 			{!isMonthly && <div className={styles.monthsFree}>2 months free</div>}
 		</button>

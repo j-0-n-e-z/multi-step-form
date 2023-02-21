@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from 'formik'
 import { FC, useState } from 'react'
 import styles from './PersonalInfo.module.scss'
+import form from './Form.module.scss'
 import cn from 'classnames'
 import { IPersonalInfo } from './Panel'
 
@@ -24,13 +25,13 @@ export const PersonalInfo: FC<PersonalInfoPropsType> = ({
 			onSubmit={values => handleFormSubmitted(values)}
 		>
 			{({ errors, touched }) => (
-				<Form className={styles.form}>
-					<div className={styles.title}>Personal Info</div>
-					<p className={styles.description}>
+				<Form className={form.form}>
+					<div className={form.title}>Personal Info</div>
+					<p className={form.description}>
 						Please provide your name, email address, and phone number.
 					</p>
 					<div className={styles.label}>
-						<label>Name</label>
+						<label htmlFor='name'>Name</label>
 						{errors.name && touched.name && (
 							<div className={styles.labelError}>{errors.name}</div>
 						)}
@@ -39,12 +40,13 @@ export const PersonalInfo: FC<PersonalInfoPropsType> = ({
 						className={cn(styles.input, {
 							[styles.inputError]: errors.name && touched.name
 						})}
+						id='name'
 						name='name'
 						validate={validateName}
 						placeholder='e.g. Stephen King'
 					/>
 					<div className={styles.label}>
-						<label>Email Address</label>
+						<label htmlFor='email'>Email Address</label>
 						{errors.email && touched.email && (
 							<div className={styles.labelError}>{errors.email}</div>
 						)}
@@ -53,13 +55,14 @@ export const PersonalInfo: FC<PersonalInfoPropsType> = ({
 						className={cn(styles.input, {
 							[styles.inputError]: errors.email && touched.email
 						})}
+						id='email'
 						type='email'
 						name='email'
 						validate={validateEmail}
 						placeholder='e.g. stephenking@lorem.com'
 					/>
 					<div className={styles.label}>
-						<label>Phone Number</label>
+						<label htmlFor='phone'>Phone Number</label>
 						{errors.phone && touched.phone && (
 							<div className={styles.labelError}>{errors.phone}</div>
 						)}
@@ -68,14 +71,18 @@ export const PersonalInfo: FC<PersonalInfoPropsType> = ({
 						className={cn(styles.input, {
 							[styles.inputError]: errors.phone && touched.phone
 						})}
+						id='phone'
 						type='tel'
 						name='phone'
 						validate={validatePhone}
 						placeholder='e.g. +1 234 567 890'
 					/>
-					<button className={styles.submit} type='submit'>
-						Next Step
-					</button>
+					<div className={form.navigation}>
+						<div></div>
+						<button className={form.submit} type='submit'>
+							Next Step
+						</button>
+					</div>
 				</Form>
 			)}
 		</Formik>

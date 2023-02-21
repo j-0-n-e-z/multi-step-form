@@ -1,0 +1,75 @@
+.summary {
+	margin: 20px;
+}
+
+.selectedPlan {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #ccc;
+}
+
+.planTitle {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	font-weight: 500;
+}
+
+.changePlan {
+	padding: 0;
+	margin-top: 5px;
+	background: none;
+	border: none;
+	outline: none;
+	color: #999;
+	text-decoration: underline;
+}
+
+.planPrice {
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+	color: hsl(213, 96%, 18%);
+}
+
+.selectedAddOns {
+	margin-top: 30px;
+}
+
+.addOn {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.addOnTitle {
+	font-size: 15px;
+	color: #999;
+}
+
+.addOnPrice {
+  font-size: 15px;
+	color: hsl(213, 96%, 18%);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.totalTitle {
+  font-size: 15px;
+	color: #999;
+}
+
+.totalPrice {
+  font-size: 20px;
+  color: hsl(243, 100%, 62%);
+  font-weight: bold;
+}
+
+.confirm {
+	background-color: hsl(243, 100%, 62%);
+}

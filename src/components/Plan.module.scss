@@ -15,7 +15,7 @@
 	&:focus {
 		outline: none;
 		border: 1px solid hsl(243, 100%, 62%);
-		background-color: hsla(243, 100%, 62%, 5%);
+		background-color: hsla(243, 100%, 62%, 15%);
 	}
 }
 
@@ -36,7 +36,7 @@
 
 .selected {
 	border: 1px solid hsl(243, 100%, 62%);
-	background-color: hsla(243, 100%, 62%, 5%);
+	background-color: hsla(243, 100%, 62%, 15%);
 }
 
 .monthsFree {

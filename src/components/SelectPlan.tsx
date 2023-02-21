@@ -4,27 +4,35 @@ import { IPlan, ISelectedPlan } from './Panel'
 import styles from './SelectPlan.module.scss'
 import cn from 'classnames'
 import { Plan } from './Plan'
+import form from './Form.module.scss'
 
 export const SelectPlan: FC<SelectPlanPropsType> = ({
 	plans,
 	selectedPlan,
 	setSelectedPlan,
-	setStep
+	setStep,
+	isMonthly,
+	setIsMonthly
 }) => {
-	const [isMonthly, setIsMonthly] = useState(true)
 	const handleFormSubmitted = (e: React.FormEvent) => {
 		e.preventDefault()
+		setSelectedPlan(prev => ({
+			...prev,
+			isMonthly,
+			price: plans.find(x => x.title === prev.title)!.price[
+				isMonthly ? 'monthly' : 'yearly'
+			]
+		}))
 		setStep(prevStep => prevStep + 1)
-		console.log(selectedPlan);
 	}
 
 	return (
-		<form onSubmit={handleFormSubmitted} className={styles.form}>
-			<div className={styles.title}>Select your plan</div>
-			<p className={styles.description}>
+		<form onSubmit={handleFormSubmitted} className={form.form}>
+			<div className={form.title}>Select your plan</div>
+			<p className={form.description}>
 				You have the option of monthly or yearly billing.
 			</p>
-			<div className={styles.subscriptions}>
+			<div className={styles.plansWrapper}>
 				<div className={styles.plans}>
 					{plans.map(plan => (
 						<Plan
@@ -36,7 +44,7 @@ export const SelectPlan: FC<SelectPlanPropsType> = ({
 						/>
 					))}
 				</div>
-				<div className={styles.selectSubscription}>
+				<div className={styles.subscriptions}>
 					<div
 						className={cn(styles.subscription, {
 							[styles.selected]: isMonthly
@@ -45,12 +53,13 @@ export const SelectPlan: FC<SelectPlanPropsType> = ({
 					>
 						Monthly
 					</div>
-					<div
-						className={cn(styles.switcher, { [styles.right]: !isMonthly })}
+					<button
+						type='button'
+						className={cn(styles.switcher, { [styles.yearly]: !isMonthly })}
 						onClick={() => setIsMonthly(prev => !prev)}
 					>
 						<div className={styles.circle}></div>
-					</div>
+					</button>
 					<div
 						className={cn(styles.subscription, {
 							[styles.selected]: !isMonthly
@@ -61,15 +70,15 @@ export const SelectPlan: FC<SelectPlanPropsType> = ({
 					</div>
 				</div>
 			</div>
-			<div className={styles.navigation}>
+			<div className={form.navigation}>
 				<button
-					className={styles.goBack}
+					className={form.goBack}
 					type='button'
 					onClick={() => setStep(prevStep => prevStep - 1)}
 				>
 					Go Back
 				</button>
-				<button className={styles.submit} type='submit'>
+				<button className={form.submit} type='submit'>
 					Next Step
 				</button>
 			</div>
@@ -82,4 +91,6 @@ type SelectPlanPropsType = {
 	selectedPlan: ISelectedPlan
 	setSelectedPlan: React.Dispatch<React.SetStateAction<ISelectedPlan>>
 	setStep: React.Dispatch<React.SetStateAction<number>>
+	isMonthly: boolean
+	setIsMonthly: React.Dispatch<React.SetStateAction<boolean>>
 }
