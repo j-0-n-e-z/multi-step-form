@@ -1,47 +1,41 @@
-import { IPlan, ISelectedPlan } from './Panel'
+import { FormItems, IPlan, ISelectedPlan, plans } from './Panel'
 import cn from 'classnames'
 import { FC } from 'react'
 import styles from './Plan.module.scss'
-import { getMoneyPerPeriodString } from '../helpers'
+import { capitalize, getPriceString } from '../helpers'
 
-export const Plan: FC<PlanPropsType> = ({
-	plan,
-	setSelectedPlan,
-	isSelected,
-	isMonthly
-}) => {
-	const handleOnClickOrFocus = () => {
-		setSelectedPlan({
-			title: plan.title,
-			price: isMonthly ? plan.price.monthly : plan.price.yearly,
-			isMonthly
-		})
-	}
-
-	return (
-		<button
-			type='button'
-			className={cn(styles.plan, { [styles.selected]: isSelected })}
-			onClick={() => handleOnClickOrFocus()}
-			onFocus={() => handleOnClickOrFocus()}
-		>
-			<img src={plan.icon} alt={plan.title} />
-			<div className={styles.planTitle}>{plan.title}</div>
-			<div className={styles.price}>
-				{getMoneyPerPeriodString(
-					isMonthly,
-					plan.price.monthly,
-					plan.price.yearly
-				)}
-			</div>
-			{!isMonthly && <div className={styles.monthsFree}>2 months free</div>}
-		</button>
-	)
+type PlanProps = Pick<FormItems, 'plan' | 'isMonthly'> & {
+	isSelected: boolean
+	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
 }
 
-type PlanPropsType = {
-	plan: IPlan & { icon: string }
-	setSelectedPlan: React.Dispatch<React.SetStateAction<ISelectedPlan>>
-	isSelected: boolean
-	isMonthly: boolean
+export const Plan: FC<PlanProps> = ({
+	plan,
+	isMonthly,
+	isSelected,
+	updateFormData
+}) => {
+	return (
+		<label
+			className={cn(styles.plan, { [styles.selected]: isSelected })}
+			htmlFor={plan}
+		>
+			<div>
+				<img src={`./images/plans/icon-${plan}.svg`} alt={plan} />
+			</div>
+			<p className={styles.planTitle}>{capitalize(plan)}</p>
+			<p className={styles.price}>
+				{getPriceString(isMonthly, plans[plan].monthly, plans[plan].yearly)}
+			</p>
+			{!isMonthly && <div className={styles.monthsFree}>2 months free</div>}
+			<input
+				id={plan}
+				name='plan'
+				type='radio'
+				onChange={() => updateFormData({ plan })}
+				checked={isSelected}
+				hidden
+			/>
+		</label>
+	)
 }

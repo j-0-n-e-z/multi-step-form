@@ -1,26 +1,32 @@
 @font-face {
 	font-family: 'Ubuntu';
 	src: url('./fonts/Ubuntu-Regular.ttf');
-  font-weight: normal;
+	font-weight: normal;
 }
 
 @font-face {
 	font-family: 'Ubuntu';
 	src: url('./fonts/Ubuntu-Medium.ttf');
-  font-weight: 500;
+	font-weight: 500;
 }
 
 @font-face {
 	font-family: 'Ubuntu';
 	src: url('./fonts/Ubuntu-Bold.ttf');
-  font-weight: bold;
+	font-weight: bold;
 }
 
-html, body {
-  margin: 0;
+html,
+body {
+	margin: 0;
 }
 
 * {
 	box-sizing: border-box;
 	font-family: 'Ubuntu';
 }
+
+input:not([value='']):not(:focus):invalid {
+	border-color: red;
+}
+

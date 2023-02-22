@@ -1,84 +1,106 @@
 import { FC, useState } from 'react'
-import { plans } from '../plans'
-import { AddOns } from './AddOns'
+import { useMultiStep } from '../hooks/useMultiStep'
 import styles from './Panel.module.scss'
+import form from './Form.module.scss'
 import { PersonalInfo } from './PersonalInfo'
 import { SelectPlan } from './SelectPlan'
 import { Sidebar } from './Sidebar'
+import { AddOns } from './AddOns'
 import { Summary } from './Summary'
 import { ThankYou } from './ThankYou'
 
-export const Panel: FC = () => {
-	const [personalInfo, setPersonalInfo] = useState<IPersonalInfo>({
-		name: '',
-		email: '',
-		phone: ''
-	})
-	const [selectedPlan, setSelectedPlan] = useState<ISelectedPlan>({
-		title: plans[0].title,
-		price: plans[0].price.monthly,
-		isMonthly: true
-	})
-	const [isMonthly, setIsMonthly] = useState(true)
-	const [selectedAddOns, setSelectedAddOns] = useState<{
-		[key: string]: boolean
-	}>({
-		Online_service: false,
-		Larger_storage: false,
-		Customizable_profile: false
-	})
-	const [step, setStep] = useState(1)
+export type Plan = 'arcade' | 'advanced' | 'pro'
 
-	const switchStepForm = (step: number) => {
-		switch (step) {
-			case 1:
-				return (
-					<PersonalInfo
-						personalInfo={personalInfo}
-						setPersonalInfo={setPersonalInfo}
-						setStep={setStep}
-					/>
-				)
-			case 2:
-				return (
-					<SelectPlan
-						plans={plans}
-						selectedPlan={selectedPlan}
-						setSelectedPlan={setSelectedPlan}
-						setStep={setStep}
-						isMonthly={isMonthly}
-						setIsMonthly={setIsMonthly}
-					/>
-				)
-			case 3:
-				return (
-					<AddOns
-						setStep={setStep}
-						isMonthly={isMonthly}
-						setSelectedAddOns={setSelectedAddOns}
-						selectedAddOns={selectedAddOns}
-					/>
-				)
-			case 4:
-				return (
-					<Summary
-						setStep={setStep}
-						isMonthly={isMonthly}
-						setIsMonthly={setIsMonthly}
-						selectedPlan={selectedPlan}
-						selectedAddOns={selectedAddOns}
-						setSelectedPlan={setSelectedPlan}
-					/>
-				)
-			case 5:
-				return <ThankYou />
-		}
+export const plans = {
+	arcade: {
+		monthly: 9,
+		yearly: 90
+	},
+	advanced: {
+		monthly: 12,
+		yearly: 120
+	},
+	pro: {
+		monthly: 15,
+		yearly: 150
+	}
+}
+
+export const addOns = {
+	onlineServices: {
+		monthly: 1,
+		yearly: 10
+	},
+	largerStorage: {
+		monthly: 2,
+		yearly: 20
+	},
+	customizableProfile: {
+		monthly: 2,
+		yearly: 20
+	}
+}
+
+export interface FormItems {
+	name: string
+	email: string
+	phone: string
+	plan: Plan
+	isMonthly: boolean
+	isOnlineService: boolean
+	isLargerStorage: boolean
+	isCustomizableProfile: boolean
+}
+
+const initialValues: FormItems = {
+	name: 's',
+	email: 's@ss.dd',
+	phone: '1234321231',
+	plan: 'arcade',
+	isMonthly: true,
+	isOnlineService: false,
+	isLargerStorage: false,
+	isCustomizableProfile: false
+}
+
+const steps = ['Your Info', 'Select Plan', 'Add-Ons', 'Summary']
+
+export const Panel: FC = () => {
+	const [formData, setFormData] = useState<FormItems>(initialValues)
+
+	const updateFormData = (fieldsToUpdate: Partial<FormItems>) => {
+		setFormData(prev => ({ ...prev, ...fieldsToUpdate }))
+	}
+
+	const { currentStepIndex, goNext, goBack, isFirstStep, isLastStep } =
+		useMultiStep(steps.length)
+
+	const handleFormSubmit = (e: React.FormEvent) => {
+		e.preventDefault()
+		goNext()
 	}
 
 	return (
 		<div className={styles.panel}>
-			<Sidebar step={step} />
-			{switchStepForm(step)}
+			<Sidebar steps={steps} currentStepIndex={currentStepIndex} />
+			<form onSubmit={handleFormSubmit} className={form.form}>
+				{currentStepIndex === 0 && (
+					<PersonalInfo {...formData} updateFormData={updateFormData} />
+				)}
+				{currentStepIndex === 1 && (
+					<SelectPlan {...formData} updateFormData={updateFormData} />
+				)}
+				<div className={form.navigation}>
+					{!isFirstStep && (
+						<button type='button' className={form.goBack} onClick={goBack}>
+							Go Back
+						</button>
+					)}
+					<button type='submit' className={form.goNext}>
+						{isLastStep ? 'Confirm' : 'Next Step'}
+					</button>
+				</div>
+			</form>
 		</div>
 	)
 }
