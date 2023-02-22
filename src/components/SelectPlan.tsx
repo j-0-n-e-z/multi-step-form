@@ -1,9 +1,10 @@
 import { FC } from 'react'
-import { FormItems, plans, Plan as PlanType } from './Panel'
+import { FormItems, Plan as PlanType } from './Panel'
 import styles from './SelectPlan.module.scss'
 import cn from 'classnames'
 import { Plan } from './Plan'
 import form from './Form.module.scss'
+import { plans } from '../data/plans'
 
 type SelectPlanProps = FormItems & {
 	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
