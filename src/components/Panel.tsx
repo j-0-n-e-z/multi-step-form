@@ -53,9 +53,9 @@ export interface FormItems {
 }
 
 const initialValues: FormItems = {
-	name: 's',
-	email: 's@ss.dd',
-	phone: '1234321231',
+	name: 'Stephen King',
+	email: 'stephenking@gmail.com',
+	phone: '+1 890 243 123',
 	plan: 'arcade',
 	isMonthly: true,
 	isOnlineService: false,

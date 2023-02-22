@@ -20,7 +20,7 @@ export const Plan: FC<PlanProps> = ({
 			className={cn(styles.plan, { [styles.selected]: isSelected })}
 			htmlFor={plan}
 		>
-			<div>
+			<div className={styles.planIcon}>
 				<img src={`./images/plans/icon-${plan}.svg`} alt={plan} />
 			</div>
 			<p className={styles.planTitle}>{capitalize(plan)}</p>
