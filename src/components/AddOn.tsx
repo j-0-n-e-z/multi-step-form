@@ -20,7 +20,7 @@ export const AddOn: FC<AddOnProps> = ({
 		<label
 			htmlFor={addOn}
 			className={cn(styles.addOn, {
-				[styles.addOnSelected]: selectedAddOns[addOn]
+				[styles.selected]: selectedAddOns[addOn]
 			})}
 		>
 			<input
@@ -37,15 +37,15 @@ export const AddOn: FC<AddOnProps> = ({
 				}
 				checked={selectedAddOns[addOn]}
 			/>
-			<div className={styles.addOnInfo}>
-				<div className={styles.addOnTitle}>
+			<div className={styles.info}>
+				<div className={styles.title}>
 					{capitalize(addOn.replace(/([A-Z])/, x => ` ${x.toLowerCase()}`))}
 				</div>
-				<div className={styles.addOnDescription}>
+				<div className={styles.description}>
 					{addOnsData[addOn].description}
 				</div>
 			</div>
-			<div className={styles.addOnPrice}>
+			<div className={styles.price}>
 				{getPriceString(
 					isMonthly,
 					addOnsData[addOn].monthly,
