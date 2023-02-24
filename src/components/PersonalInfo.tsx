@@ -1,17 +1,12 @@
-import { FC, useEffect, useState, FocusEvent } from 'react'
+import { FC } from 'react'
 import styles from './PersonalInfo.module.scss'
 import form from './Form.module.scss'
 import cn from 'classnames'
 import { FormItems } from './Panel'
+import { useCustomErrors } from '../hooks/useCustomErrors'
 
 type PersonalInfoProps = FormItems & {
 	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
-}
-
-const errorsMessages: { [key: string]: string } = {
-	required: 'This field is required',
-	email: 'Invalid email address',
-	phone: 'Invalid phone number'
 }
 
 export const PersonalInfo: FC<PersonalInfoProps> = ({
@@ -20,33 +15,14 @@ export const PersonalInfo: FC<PersonalInfoProps> = ({
 	phone,
 	updateFormData
 }) => {
-	const [errors, setErrors] = useState({ name: '', email: '', phone: '' })
-	const [touched, setTouched] = useState({
-		name: false,
-		email: false,
-		phone: false
-	})
-
-	const setError = (field: string, value: string, errorOccurred: boolean) => {
-		if (!value) {
-			setErrors(prev => ({
-				...prev,
-				[field]: errorsMessages.required
-			}))
-		} else {
-			setErrors(prev => ({
-				...prev,
-				[field]: errorOccurred ? errorsMessages[field] : ''
-			}))
-		}
-	}
+	const { errors, touched, setError, setTouched } = useCustomErrors()
 
 	const handleOnChange = (
 		e: React.ChangeEvent<HTMLInputElement>,
 		field: string
 	) => {
 		updateFormData({ [field]: e.target.value })
-		setError(field, e.target.value, e.target.validity.patternMismatch)
+		setError(e, field)
 	}
 
 	const handleOnBlur = (
@@ -54,7 +30,7 @@ export const PersonalInfo: FC<PersonalInfoProps> = ({
 		field: string
 	) => {
 		setTouched(prev => ({ ...prev, [field]: true }))
-		setError(field, e.target.value, e.target.validity.patternMismatch)
+		setError(e, field)
 	}
 
 	return (
