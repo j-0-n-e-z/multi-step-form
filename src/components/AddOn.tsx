@@ -3,7 +3,7 @@ import styles from './AddOn.module.scss'
 import cn from 'classnames'
 import { FormItems } from './Panel'
 import { addOnsData } from '../data/addOns'
-import { capitalize, getPriceString } from '../helpers'
+import { capitalize, getPricePerPeriodString } from '../helpers'
 
 type AddOnProps = Pick<FormItems, 'isMonthly' | 'selectedAddOns'> & {
 	addOn: string
@@ -46,7 +46,7 @@ export const AddOn: FC<AddOnProps> = ({
 				</div>
 			</div>
 			<div className={styles.price}>
-				{getPriceString(
+				{getPricePerPeriodString(
 					isMonthly,
 					addOnsData[addOn].monthly,
 					addOnsData[addOn].yearly

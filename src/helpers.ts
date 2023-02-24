@@ -1,4 +1,4 @@
-export function getPriceString(
+export function getPricePerPeriodString(
 	isMonthly: boolean,
 	monthlyPrice: number,
 	yearlyPrice: number

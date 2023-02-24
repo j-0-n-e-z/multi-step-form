@@ -2,7 +2,7 @@ import { FormItems } from './Panel'
 import cn from 'classnames'
 import { FC } from 'react'
 import styles from './Plan.module.scss'
-import { capitalize, getPriceString } from '../helpers'
+import { capitalize, getPricePerPeriodString } from '../helpers'
 import { plansData } from '../data/plans'
 import { Plan as TPlan } from './Panel'
 
@@ -28,7 +28,7 @@ export const Plan: FC<PlanProps> = ({
 			</div>
 			<p className={styles.planTitle}>{capitalize(plan)}</p>
 			<p className={styles.price}>
-				{getPriceString(
+				{getPricePerPeriodString(
 					isMonthly,
 					plansData[plan].monthly,
 					plansData[plan].yearly
