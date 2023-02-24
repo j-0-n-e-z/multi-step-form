@@ -15,7 +15,7 @@ export const PersonalInfo: FC<PersonalInfoProps> = ({
 	phone,
 	updateFormData
 }) => {
-	const { errors, touched, setError, setTouched } = useCustomErrors()
+	const { errors, touched, setError, setTouched } = useCustomErrors(['name', 'email', 'phone'])
 
 	const handleOnChange = (
 		e: React.ChangeEvent<HTMLInputElement>,

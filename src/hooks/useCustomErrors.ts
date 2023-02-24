@@ -6,13 +6,16 @@ const errorsMessages: { [key: string]: string } = {
 	phone: 'Invalid phone number'
 }
 
-export const useCustomErrors = () => {
-	const [errors, setErrors] = useState({ name: '', email: '', phone: '' })
-	const [touched, setTouched] = useState({
-		name: false,
-		email: false,
-		phone: false
-	})
+type Errors = { [key: string]: string }
+type Touches = { [key: string]: boolean }
+
+export const useCustomErrors = (fields: string[]) => {
+	const [errors, setErrors] = useState<Errors>(
+		Object.fromEntries(fields.map(x => [x, '']))
+	)
+	const [touched, setTouched] = useState<Touches>(
+		Object.fromEntries(fields.map(x => [x, false]))
+	)
 
 	const setError = (
 		e: React.ChangeEvent<HTMLInputElement> | React.FocusEvent<HTMLInputElement>,
