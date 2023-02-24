@@ -2,7 +2,7 @@ import { FC } from 'react'
 import styles from './AddOns.module.scss'
 import form from './Form.module.scss'
 import { AddOn } from './AddOn'
-import { addOnsData } from '../data/addOns'
+import { addOnsData } from '../data/addOnsData'
 import { FormItems } from './Panel'
 
 export type AddOnsProps = FormItems & {

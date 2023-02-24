@@ -1,10 +1,9 @@
 import { FC } from 'react'
 import { FormItems, Plan as TPlan } from './Panel'
 import styles from './SelectPlan.module.scss'
-import cn from 'classnames'
 import { Plan } from './Plan'
 import form from './Form.module.scss'
-import { plansData } from '../data/plans'
+import { plansData } from '../data/plansData'
 import { PlanLengthSwitcher } from './PlanLengthSwitcher'
 
 type SelectPlanProps = FormItems & {

@@ -2,7 +2,7 @@ import { FC } from 'react'
 import styles from './AddOn.module.scss'
 import cn from 'classnames'
 import { FormItems } from './Panel'
-import { addOnsData } from '../data/addOns'
+import { addOnsData } from '../data/addOnsData'
 import { capitalize, getPricePerPeriodString } from '../helpers'
 
 type AddOnProps = Pick<FormItems, 'isMonthly' | 'selectedAddOns'> & {

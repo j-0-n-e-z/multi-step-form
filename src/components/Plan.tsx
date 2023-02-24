@@ -3,7 +3,7 @@ import cn from 'classnames'
 import { FC } from 'react'
 import styles from './Plan.module.scss'
 import { capitalize, getPricePerPeriodString } from '../helpers'
-import { plansData } from '../data/plans'
+import { plansData } from '../data/plansData'
 import { Plan as TPlan } from './Panel'
 
 type PlanProps = Pick<FormItems, 'isMonthly'> & {
