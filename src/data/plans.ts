@@ -1,4 +1,4 @@
-export const plans = {
+export const plansData = {
 	arcade: {
 		monthly: 9,
 		yearly: 90

@@ -1,17 +1,17 @@
 import { FC } from 'react'
-import { FormItems, Plan as PlanType } from './Panel'
+import { FormItems, Plan as TPlan } from './Panel'
 import styles from './SelectPlan.module.scss'
 import cn from 'classnames'
 import { Plan } from './Plan'
 import form from './Form.module.scss'
-import { plans } from '../data/plans'
+import { plansData } from '../data/plans'
 
 type SelectPlanProps = FormItems & {
 	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
 }
 
 export const SelectPlan: FC<SelectPlanProps> = ({
-	plan: selectedPlan,
+	selectedPlan,
 	isMonthly,
 	updateFormData
 }) => {
@@ -23,10 +23,10 @@ export const SelectPlan: FC<SelectPlanProps> = ({
 			</p>
 			<div className={styles.plansWrapper}>
 				<div className={styles.plans}>
-					{Object.keys(plans).map(plan => (
+					{Object.keys(plansData).map(plan => (
 						<Plan
 							key={plan}
-							plan={plan as PlanType}
+							plan={plan as TPlan}
 							isSelected={plan === selectedPlan}
 							isMonthly={isMonthly}
 							updateFormData={updateFormData}
@@ -36,7 +36,7 @@ export const SelectPlan: FC<SelectPlanProps> = ({
 				<div>
 					<label htmlFor='toggle' className={styles.planLength}>
 						<span
-							className={cn(styles.subscription, {
+							className={cn(styles.planLengthCase, {
 								[styles.selected]: isMonthly
 							})}
 						>
@@ -55,7 +55,7 @@ export const SelectPlan: FC<SelectPlanProps> = ({
 						/>
 						<div className={styles.circle}></div>
 						<span
-							className={cn(styles.subscription, {
+							className={cn(styles.planLengthCase, {
 								[styles.selected]: !isMonthly
 							})}
 						>

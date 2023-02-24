@@ -11,26 +11,33 @@ import { ThankYou } from './ThankYou'
 
 export type Plan = 'arcade' | 'advanced' | 'pro'
 
+type AddOns = {
+	[key: string]: boolean
+	onlineService: boolean
+	largerStorage: boolean
+	customizableProfile: boolean
+}
+
 export interface FormItems {
 	name: string
 	email: string
 	phone: string
-	plan: Plan
+	selectedPlan: Plan
 	isMonthly: boolean
-	isOnlineService: boolean
-	isLargerStorage: boolean
-	isCustomizableProfile: boolean
+	selectedAddOns: AddOns
 }
 
 const initialValues: FormItems = {
 	name: 'Stephen King',
 	email: 'stephenking@gmail.com',
 	phone: '+1 890 243 123',
-	plan: 'arcade',
+	selectedPlan: 'arcade',
 	isMonthly: true,
-	isOnlineService: false,
-	isLargerStorage: false,
-	isCustomizableProfile: false
+	selectedAddOns: {
+		onlineService: false,
+		largerStorage: false,
+		customizableProfile: false
+	}
 }
 
 const steps = ['Your Info', 'Select Plan', 'Add-Ons', 'Summary']
@@ -60,6 +67,9 @@ export const Panel: FC = () => {
 				{currentStepIndex === 1 && (
 					<SelectPlan {...formData} updateFormData={updateFormData} />
 				)}
+				{currentStepIndex === 2 && (
+					<AddOns {...formData} updateFormData={updateFormData} />
+				)}
 				<div className={form.navigation}>
 					{!isFirstStep && (
 						<button type='button' className={form.goBack} onClick={goBack}>
@@ -73,22 +83,4 @@ export const Panel: FC = () => {
 			</form>
 		</div>
 	)
-}
-
-export interface IPersonalInfo {
-	name: string
-	email: string
-	phone: string
-}
-
-export interface ISelectedPlan {
-	title: string
-	price: number
-	isMonthly: boolean
-}
-
-export interface IPlan {
-	title: string
-	icon: string
-	price: { monthly: number; yearly: number }
 }
