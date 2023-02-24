@@ -39,7 +39,7 @@ export const AddOn: FC<AddOnProps> = ({
 			/>
 			<div className={styles.info}>
 				<div className={styles.title}>
-					{capitalize(addOn.replace(/([A-Z])/, x => ` ${x.toLowerCase()}`))}
+					{capitalize(addOn.replace(/[A-Z]/, x => ' ' + x.toLowerCase()))}
 				</div>
 				<div className={styles.description}>
 					{addOnsData[addOn].description}
