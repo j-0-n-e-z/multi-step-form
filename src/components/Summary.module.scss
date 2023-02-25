@@ -1,5 +1,6 @@
 .summary {
-	margin: 20px;
+	padding: 20px;
+	background-color: #f5f5f5;
 }
 
 .selectedPlan {
@@ -24,6 +25,11 @@
 	outline: none;
 	color: #999;
 	text-decoration: underline;
+	cursor: pointer;
+
+	&:hover {
+		color: black;
+	}
 }
 
 .planPrice {
@@ -49,27 +55,25 @@
 }
 
 .addOnPrice {
-  font-size: 15px;
+	font-size: 15px;
 	color: hsl(213, 96%, 18%);
 }
 
 .total {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 50px;
+	padding: 0 20px;
 }
 
 .totalTitle {
-  font-size: 15px;
+	font-size: 15px;
 	color: #999;
 }
 
 .totalPrice {
-  font-size: 20px;
-  color: hsl(243, 100%, 62%);
-  font-weight: bold;
+	font-size: 20px;
+	color: hsl(243, 100%, 62%);
+	font-weight: bold;
 }
 
-.confirm {
-	background-color: hsl(243, 100%, 62%);
-}

@@ -2,6 +2,7 @@ import { FC, useState } from 'react'
 import { useMultiStep } from '../hooks/useMultiStep'
 import styles from './Panel.module.scss'
 import form from './Form.module.scss'
+import cn from 'classnames'
 import { PersonalInfo } from './PersonalInfo'
 import { SelectPlan } from './SelectPlan'
 import { Sidebar } from './Sidebar'
@@ -49,13 +50,21 @@ export const Panel: FC = () => {
 		setFormData(prev => ({ ...prev, ...fieldsToUpdate }))
 	}
 
-	const { currentStepIndex, goNext, goBack, isFirstStep, isLastStep } =
-		useMultiStep(steps.length)
+	const {
+		currentStepIndex,
+		goNext,
+		goBack,
+		isFirstStep,
+		isLastStep,
+		isThankYou
+	} = useMultiStep(steps.length + 1)
 
 	const handleFormSubmit = (e: React.FormEvent) => {
 		e.preventDefault()
 		goNext()
 	}
+
+	console.log(isThankYou)
 
 	return (
 		<div className={styles.panel}>
@@ -70,16 +79,25 @@ export const Panel: FC = () => {
 				{currentStepIndex === 2 && (
 					<AddOns {...formData} updateFormData={updateFormData} />
 				)}
-				<div className={form.navigation}>
-					{!isFirstStep && (
-						<button type='button' className={form.goBack} onClick={goBack}>
-							Go Back
+				{currentStepIndex === 3 && (
+					<Summary {...formData} updateFormData={updateFormData} />
+				)}
+				{currentStepIndex === 4 && <ThankYou />}
+				{!isThankYou && (
+					<div className={form.navigation}>
+						{!isFirstStep && (
+							<button type='button' className={form.goBack} onClick={goBack}>
+								Go Back
+							</button>
+						)}
+						<button
+							type='submit'
+							className={cn(form.goNext, { [form.confirm]: isLastStep })}
+						>
+							{isLastStep ? 'Confirm' : 'Next Step'}
 						</button>
-					)}
-					<button type='submit' className={form.goNext}>
-						{isLastStep ? 'Confirm' : 'Next Step'}
-					</button>
-				</div>
+					</div>
+				)}
 			</form>
 		</div>
 	)

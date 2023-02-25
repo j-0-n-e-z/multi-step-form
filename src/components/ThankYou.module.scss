@@ -1,25 +1,26 @@
 .wrapper {
-  flex: 1;
-  padding: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
-img {
-  margin-bottom: 30px;
+.thankYouImage {
+	width: 80px;
+	height: 80px;
+	margin-bottom: 30px;
 }
 
 .title {
-  margin-bottom: 20px;
-  font-size: 30px;
-  font-weight: bold;
+	margin-bottom: 20px;
+	font-size: 30px;
+	font-weight: bold;
 }
 
 .text {
-  color: #999;
-  line-height: 30px;
-  text-align: center;
+	color: #999;
+	line-height: 30px;
+	text-align: center;
 }
-

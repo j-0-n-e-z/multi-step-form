@@ -17,12 +17,13 @@ export const useMultiStep = (stepsCount: number) => {
 		setCurrentStepIndex(stepIndex)
 	}
 
-  return {
-    currentStepIndex,
+	return {
+		currentStepIndex,
 		goNext,
 		goBack,
 		goToStep,
 		isFirstStep: currentStepIndex === 0,
-		isLastStep: currentStepIndex === stepsCount - 1
+		isLastStep: currentStepIndex === stepsCount - 2,
+		isThankYou: currentStepIndex === stepsCount - 1
 	}
 }

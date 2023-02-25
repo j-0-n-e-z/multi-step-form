@@ -15,7 +15,7 @@ export const AddOns: FC<AddOnsProps> = ({
 	updateFormData
 }) => {
 	return (
-		<div>
+		<>
 			<div className={form.title}>Pick add-ons</div>
 			<p className={form.description}>
 				Add-ons help enhance your gaming experience.
@@ -31,6 +31,6 @@ export const AddOns: FC<AddOnsProps> = ({
 					/>
 				))}
 			</div>
-		</div>
+		</>
 	)
 }

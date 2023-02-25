@@ -3,7 +3,7 @@ import styles from './ThankYou.module.scss'
 export const ThankYou = () => {
 	return (
 		<div className={styles.wrapper}>
-			<div>
+			<div className={styles.thankYouImage}>
 				<img src='./images/icon-thank-you.svg' alt='thank you' />
 			</div>
 			<div className={styles.title}>Thank you!</div>
