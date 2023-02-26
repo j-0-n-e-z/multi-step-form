@@ -1,9 +1,9 @@
 import { FC } from 'react'
-import { FormItems, Plan as TPlan } from './Panel'
+import { FormItems, Plan as TPlan } from '../Panel'
 import styles from './SelectPlan.module.scss'
 import { Plan } from './Plan'
-import form from './Form.module.scss'
-import { plansData } from '../data/plansData'
+import form from '../Form.module.scss'
+import { plansData } from '../../data/plansData'
 import { PlanLengthSwitcher } from './PlanLengthSwitcher'
 
 type SelectPlanProps = FormItems & {
@@ -12,32 +12,32 @@ type SelectPlanProps = FormItems & {
 
 export const SelectPlan: FC<SelectPlanProps> = ({
 	selectedPlan,
-	isMonthly,
+	planDuration,
 	updateFormData
 }) => {
 	return (
-		<div>
+		<>
 			<div className={form.title}>Select your plan</div>
 			<p className={form.description}>
 				You have the option of monthly or yearly billing.
 			</p>
 			<div className={styles.plansWrapper}>
 				<div className={styles.plans}>
-					{Object.keys(plansData).map(plan => (
+					{(Object.keys(plansData) as Array<TPlan>).map(plan => (
 						<Plan
 							key={plan}
-							plan={plan as TPlan}
+							plan={plan}
 							isSelected={plan === selectedPlan}
-							isMonthly={isMonthly}
+							planDuration={planDuration}
 							updateFormData={updateFormData}
 						/>
 					))}
 				</div>
 				<PlanLengthSwitcher
-					isMonthly={isMonthly}
+					planDuration={planDuration}
 					updateFormData={updateFormData}
 				/>
 			</div>
-		</div>
+		</>
 	)
 }

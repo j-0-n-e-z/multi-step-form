@@ -12,16 +12,16 @@ export const Sidebar: FC<SidebarProps> = ({ steps, currentStepIndex }) => {
 		<div className={styles.sidebar}>
 			{steps.map((step, stepIndex) => (
 				<div key={step} className={styles.step}>
-					<button
+					<div
 						className={cn(styles.stepNum, {
 							[styles.currentStep]: stepIndex === currentStepIndex
 						})}
 					>
 						{stepIndex + 1}
-					</button>
-					<div className={styles.stepInfo}>
-						<div className={styles.stepTitle}>step {stepIndex + 1}</div>
-						<div className={styles.stepDescription}>
+					</div>
+					<div className={styles.info}>
+						<div className={styles.title}>step {stepIndex + 1}</div>
+						<div className={styles.description}>
 							{step}
 						</div>
 					</div>

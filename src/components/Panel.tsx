@@ -3,29 +3,30 @@ import { useMultiStep } from '../hooks/useMultiStep'
 import styles from './Panel.module.scss'
 import form from './Form.module.scss'
 import cn from 'classnames'
-import { PersonalInfo } from './PersonalInfo'
-import { SelectPlan } from './SelectPlan'
-import { Sidebar } from './Sidebar'
-import { AddOns } from './AddOns'
-import { Summary } from './Summary'
-import { ThankYou } from './ThankYou'
+import { PersonalInfo } from './personalInfo/PersonalInfo'
+import { SelectPlan } from './selectPlan/SelectPlan'
+import { Sidebar } from './sidebar/Sidebar'
+import { PickAddOns } from './pickAddOns/PickAddOns'
+import { FinishingUp } from './finishingUp/FinishingUp'
+import { ThankYou } from './thankYou/ThankYou'
 
 export type Plan = 'arcade' | 'advanced' | 'pro'
 
-type AddOns = {
-	[key: string]: boolean
-	onlineService: boolean
-	largerStorage: boolean
-	customizableProfile: boolean
+export type AddOn = 'onlineService' | 'largerStorage' | 'customizableProfile'
+
+export type AddOns = {
+	[key in AddOn]: boolean
 }
+
+export type PlanDuration = 'monthly' | 'yearly'
 
 export interface FormItems {
 	name: string
 	email: string
 	phone: string
 	selectedPlan: Plan
-	isMonthly: boolean
-	selectedAddOns: AddOns
+	planDuration: PlanDuration
+	pickedAddOns: AddOns
 }
 
 const initialValues: FormItems = {
@@ -33,15 +34,15 @@ const initialValues: FormItems = {
 	email: 'stephenking@gmail.com',
 	phone: '+1 890 243 123',
 	selectedPlan: 'arcade',
-	isMonthly: true,
-	selectedAddOns: {
+	planDuration: 'monthly',
+	pickedAddOns: {
 		onlineService: false,
 		largerStorage: false,
 		customizableProfile: false
 	}
 }
 
-const steps = ['Your Info', 'Select Plan', 'Add-Ons', 'Summary']
+const steps = ['your info', 'select plan', 'add-ons', 'summary']
 
 export const Panel: FC = () => {
 	const [formData, setFormData] = useState<FormItems>(initialValues)
@@ -64,8 +65,6 @@ export const Panel: FC = () => {
 		goNext()
 	}
 
-	console.log(isThankYou)
-
 	return (
 		<div className={styles.panel}>
 			<Sidebar steps={steps} currentStepIndex={currentStepIndex} />
@@ -77,10 +76,10 @@ export const Panel: FC = () => {
 					<SelectPlan {...formData} updateFormData={updateFormData} />
 				)}
 				{currentStepIndex === 2 && (
-					<AddOns {...formData} updateFormData={updateFormData} />
+					<PickAddOns {...formData} updateFormData={updateFormData} />
 				)}
 				{currentStepIndex === 3 && (
-					<Summary {...formData} updateFormData={updateFormData} />
+					<FinishingUp {...formData} updateFormData={updateFormData} />
 				)}
 				{currentStepIndex === 4 && <ThankYou />}
 				{!isThankYou && (

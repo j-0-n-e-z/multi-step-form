@@ -34,5 +34,5 @@ export const useCustomErrors = (fields: string[]) => {
 		}
 	}
 
-	return { errors, setErrors, setError, touched, setTouched }
+	return { errors, touched, setError, setErrors, setTouched }
 }

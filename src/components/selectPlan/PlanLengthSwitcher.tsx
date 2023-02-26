@@ -1,21 +1,21 @@
 import { FC } from 'react'
-import { FormItems } from './Panel'
+import { FormItems } from '../Panel'
 import styles from './PlanLengthSwitcher.module.scss'
 import cn from 'classnames'
 
-type PlanLengthSwitcherProps = Pick<FormItems, 'isMonthly'> & {
+type PlanLengthSwitcherProps = Pick<FormItems, 'planDuration'> & {
 	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
 }
 
 export const PlanLengthSwitcher: FC<PlanLengthSwitcherProps> = ({
-	isMonthly,
+	planDuration,
 	updateFormData
 }) => {
 	return (
 		<label htmlFor='toggle' className={styles.planLength}>
 			<span
 				className={cn(styles.planLengthCase, {
-					[styles.selected]: isMonthly
+					[styles.selected]: planDuration === 'monthly'
 				})}
 			>
 				Monthly
@@ -26,15 +26,15 @@ export const PlanLengthSwitcher: FC<PlanLengthSwitcherProps> = ({
 				className={styles.switcher}
 				onChange={() =>
 					updateFormData({
-						isMonthly: !isMonthly
+						planDuration: planDuration === 'monthly' ? 'yearly' : 'monthly'
 					})
 				}
-				checked={isMonthly}
+				checked={planDuration === 'monthly'}
 			/>
 			<div className={styles.circle}></div>
 			<span
 				className={cn(styles.planLengthCase, {
-					[styles.selected]: !isMonthly
+					[styles.selected]: planDuration === 'yearly'
 				})}
 			>
 				Yearly

@@ -1,26 +1,26 @@
 import { FC } from 'react'
 import styles from './AddOn.module.scss'
 import cn from 'classnames'
-import { FormItems } from './Panel'
-import { addOnsData } from '../data/addOnsData'
-import { breakCamelCase, capitalize, getPricePerPeriodString } from '../helpers'
+import { AddOn as AddOnType, FormItems } from '../Panel'
+import { addOnsData } from '../../data/addOnsData'
+import { breakCamelCase, capitalize, getPricePerPeriodString } from '../../helpers'
 
-type AddOnProps = Pick<FormItems, 'isMonthly' | 'selectedAddOns'> & {
-	addOn: string
+type AddOnProps = Pick<FormItems, 'planDuration' | 'pickedAddOns'> & {
+	addOn: AddOnType
 	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
 }
 
 export const AddOn: FC<AddOnProps> = ({
 	addOn,
-	selectedAddOns,
+	pickedAddOns,
 	updateFormData,
-	isMonthly
+	planDuration
 }) => {
 	return (
 		<label
 			htmlFor={addOn}
 			className={cn(styles.addOn, {
-				[styles.selected]: selectedAddOns[addOn]
+				[styles.selected]: pickedAddOns[addOn]
 			})}
 		>
 			<input
@@ -29,28 +29,22 @@ export const AddOn: FC<AddOnProps> = ({
 				type='checkbox'
 				onChange={() =>
 					updateFormData({
-						selectedAddOns: {
-							...selectedAddOns,
-							[addOn]: !selectedAddOns[addOn]
+						pickedAddOns: {
+							...pickedAddOns,
+							[addOn]: !pickedAddOns[addOn]
 						}
 					})
 				}
-				checked={selectedAddOns[addOn]}
+				checked={pickedAddOns[addOn]}
 			/>
 			<div className={styles.info}>
-				<div className={styles.title}>
-					{capitalize(breakCamelCase(addOn))}
-				</div>
+				<div className={styles.title}>{capitalize(breakCamelCase(addOn))}</div>
 				<div className={styles.description}>
 					{addOnsData[addOn].description}
 				</div>
 			</div>
 			<div className={styles.price}>
-				{getPricePerPeriodString(
-					isMonthly,
-					addOnsData[addOn].monthly,
-					addOnsData[addOn].yearly
-				)}
+				{getPricePerPeriodString(planDuration, addOnsData[addOn][planDuration])}
 			</div>
 		</label>
 	)

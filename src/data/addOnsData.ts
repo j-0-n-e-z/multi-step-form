@@ -1,8 +1,10 @@
+import { AddOn } from "../components/Panel";
+
 type AddOnsData = {
-	[key: string]: { monthly: number; yearly: number; description: string }
+	[key in AddOn]: { monthly: number; yearly: number; description: string }
 }
 
-export const addOnsData: AddOnsData = {
+export const addOnsData = {
 	onlineService: {
 		monthly: 1,
 		yearly: 10,

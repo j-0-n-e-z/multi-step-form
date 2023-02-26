@@ -1,3 +1,9 @@
+import { Plan } from "../components/Panel";
+
+type PlansData = {
+	[key in Plan]: { monthly: number; yearly: number }
+}
+
 export const plansData = {
 	arcade: {
 		monthly: 9,

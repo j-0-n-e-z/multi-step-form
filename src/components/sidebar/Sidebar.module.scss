@@ -37,21 +37,21 @@
 	outline: none;
 }
 
-.stepTitle {
+.title {
 	text-transform: uppercase;
 	font-size: 13px;
 	color: hsl(231, 11%, 63%);
 	margin-bottom: 3px;
 }
 
-.stepDescription {
+.description {
 	text-transform: uppercase;
 	font-weight: 500;
 	font-size: 15px;
 	letter-spacing: 1px;
 }
 
-.stepInfo {
+.info {
 	display: flex;
 	flex-direction: column;
 	align-items: start;

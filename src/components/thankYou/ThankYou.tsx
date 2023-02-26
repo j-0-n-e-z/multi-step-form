@@ -1,6 +1,7 @@
+import { FC } from 'react'
 import styles from './ThankYou.module.scss'
 
-export const ThankYou = () => {
+export const ThankYou: FC = () => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.thankYouImage}>

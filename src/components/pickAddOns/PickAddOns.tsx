@@ -1,17 +1,17 @@
 import { FC } from 'react'
-import styles from './AddOns.module.scss'
-import form from './Form.module.scss'
+import styles from './PickAddOns.module.scss'
+import form from '../Form.module.scss'
 import { AddOn } from './AddOn'
-import { addOnsData } from '../data/addOnsData'
-import { FormItems } from './Panel'
+import { addOnsData } from '../../data/addOnsData'
+import { FormItems, AddOn as AddOnType } from '../Panel'
 
-export type AddOnsProps = FormItems & {
+export type PickAddOnsProps = FormItems & {
 	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
 }
 
-export const AddOns: FC<AddOnsProps> = ({
-	selectedAddOns,
-	isMonthly,
+export const PickAddOns: FC<PickAddOnsProps> = ({
+	pickedAddOns,
+	planDuration,
 	updateFormData
 }) => {
 	return (
@@ -21,12 +21,12 @@ export const AddOns: FC<AddOnsProps> = ({
 				Add-ons help enhance your gaming experience.
 			</p>
 			<div className={styles.addOns}>
-				{Object.keys(addOnsData).map(addOn => (
+				{(Object.keys(addOnsData) as Array<AddOnType>).map(addOn => (
 					<AddOn
 						key={addOn}
 						addOn={addOn}
-						selectedAddOns={selectedAddOns}
-						isMonthly={isMonthly}
+						pickedAddOns={pickedAddOns}
+						planDuration={planDuration}
 						updateFormData={updateFormData}
 					/>
 				))}

@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import styles from './PersonalInfo.module.scss'
-import form from './Form.module.scss'
+import form from '../Form.module.scss'
 import cn from 'classnames'
-import { FormItems } from './Panel'
-import { useCustomErrors } from '../hooks/useCustomErrors'
+import { FormItems } from '../Panel'
+import { useCustomErrors } from '../../hooks/useCustomErrors'
 
 type PersonalInfoProps = FormItems & {
 	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
