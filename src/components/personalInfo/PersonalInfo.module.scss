@@ -6,8 +6,8 @@
 }
 
 .labelError {
-	font-weight: 500;
-	color: red;
+	font-weight: bold;
+	color: var(--error);
 }
 
 .input {
@@ -21,7 +21,7 @@
 	font-size: 17px;
 
 	&::placeholder {
-		color: hsl(231, 11%, 63%);
+		color: var(--grey);
 	}
 
 	&:focus {
@@ -30,7 +30,7 @@
 }
 
 .inputError {
-	border: 1px solid red;
+	border: 1px solid var(--error);
 }
 
 

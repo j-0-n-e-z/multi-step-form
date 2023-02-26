@@ -26,7 +26,3 @@ body {
 	font-family: 'Ubuntu';
 }
 
-input:not([value='']):not(:focus):invalid {
-	border-color: red;
-}
-

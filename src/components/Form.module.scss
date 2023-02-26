@@ -1,8 +1,10 @@
+@import '../vars.css';
+
 .form {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	flex: 1;
+	width: 100%;
 	padding: 50px 100px;
 }
 
@@ -14,7 +16,7 @@
 .description {
 	margin-top: 10px;
 	margin-bottom: 40px;
-	color: hsl(231, 11%, 63%);
+	color: var(--grey);
 	font-size: 18px;
 }
 
@@ -31,15 +33,15 @@
 	border: none;
 	font-weight: 500;
 	cursor: pointer;
-	color: #999;
+	color: var(--grey);
 
 	&:hover {
-		color: #044c88;
+		color: var(--dark-blue);
 	}
 }
 
 .goNext {
-	background-color: #044c88;
+	background-color: var(--dark-blue);
 	color: #fff;
 	border: none;
 	width: 120px;
@@ -51,6 +53,6 @@
 }
 
 .confirm {
-	background-color: hsl(243, 100%, 62%);
+	background-color: var(--primary);
 }
 

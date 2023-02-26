@@ -2,19 +2,19 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
-	border: 1px solid hsl(231, 11%, 63%);
+	border: 1px solid var(--grey);
 	border-radius: 10px;
 	padding: 20px;
 	width: 150px;
 	background-color: #fff;
 
 	&:hover {
-		border: 1px solid hsl(243, 100%, 62%);
+		border: 1px solid var(--primary);
 	}
 
 	&:focus {
 		outline: none;
-		border: 1px solid hsl(243, 100%, 62%);
+		border: 1px solid var(--primary);
 		background-color: hsla(243, 100%, 62%, 15%);
 	}
 }
@@ -32,12 +32,12 @@
 
 .price {
 	margin: 0;
-	color: #aaa;
+	color: var(--grey);
 	font-size: 16px;
 }
 
 .selected {
-	border: 1px solid hsl(243, 100%, 62%);
+	border: 1px solid var(--primary);
 	background-color: hsla(243, 100%, 62%, 15%);
 }
 

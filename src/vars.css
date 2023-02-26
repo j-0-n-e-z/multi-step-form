@@ -1,0 +1,8 @@
+:root {
+  --dark-blue: hsl(213, 96%, 18%);
+  --primary: hsl(243, 100%, 62%);
+  --primary-light: hsla(243, 100%, 62%, 15%);
+  --grey: #999;
+  --error: red;
+  --sidebar-step: #bbe2fc;
+}

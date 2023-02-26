@@ -1,12 +1,11 @@
+@import '../../vars.css';
+
 .sidebar {
 	padding: 35px;
-	width: 274px;
+	min-width: 274px;
 	height: 568px;
 	background-image: url(./images/bg-sidebar-desktop.svg);
 	margin-left: 18px;
-}
-
-.sidebar * {
 	color: #fff;
 }
 
@@ -20,8 +19,8 @@
 	width: 35px;
 	height: 35px;
 	border-radius: 100%;
-	background-color: hsl(243, 100%, 62%);
-	border: 2px solid hsl(228, 100%, 84%);
+	background-color: var(---primary);
+	border: 2px solid var(--sidebar-step);
 	font-size: 15px;
 	display: flex;
 	justify-content: center;
@@ -31,16 +30,16 @@
 }
 
 .currentStep {
-	background-color: #bbe2fc;
-	border: 2px solid #bbe2fc;
-	color: hsl(213, 96%, 18%);
+	background-color: var(--sidebar-step);
+	border: 2px solid var(--sidebar-step);
+	color: var(--dark-blue);
 	outline: none;
 }
 
 .title {
 	text-transform: uppercase;
 	font-size: 13px;
-	color: hsl(231, 11%, 63%);
+	color: var(--grey);
 	margin-bottom: 3px;
 }
 
