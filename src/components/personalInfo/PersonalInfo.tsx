@@ -1,28 +1,40 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './PersonalInfo.module.scss'
 import form from '../Form.module.scss'
 import cn from 'classnames'
 import { FormItems } from '../Panel'
-import { useCustomErrors } from '../../hooks/useCustomErrors'
+import { Errors, Touches, useCustomErrors } from '../../hooks/useCustomErrors'
 
 type PersonalInfoProps = FormItems & {
 	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
+	isSubmitted: boolean
 }
 
 export const PersonalInfo: FC<PersonalInfoProps> = ({
 	name,
 	email,
 	phone,
-	updateFormData
+	updateFormData,
+	isSubmitted
 }) => {
-	const { errors, touched, setError, setTouched } = useCustomErrors(['name', 'email', 'phone'])
+	const fields = ['name', 'email', 'phone']
+	const { errors, touched, setTouched, setFieldErrorOnChange, setFieldError } =
+		useCustomErrors(fields)
+
+	useEffect(() => {
+		if (isSubmitted) {
+			if (!name) setFieldError('name')
+			if (!email) setFieldError('email')
+			if (!phone) setFieldError('phone')
+		}
+	}, [isSubmitted])
 
 	const handleOnChange = (
 		e: React.ChangeEvent<HTMLInputElement>,
 		field: string
 	) => {
 		updateFormData({ [field]: e.target.value })
-		setError(e, field)
+		setFieldErrorOnChange(e, field)
 	}
 
 	const handleOnBlur = (
@@ -30,7 +42,7 @@ export const PersonalInfo: FC<PersonalInfoProps> = ({
 		field: string
 	) => {
 		setTouched(prev => ({ ...prev, [field]: true }))
-		setError(e, field)
+		setFieldErrorOnChange(e, field)
 	}
 
 	return (

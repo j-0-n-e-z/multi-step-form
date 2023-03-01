@@ -1,13 +1,18 @@
 import { useState } from 'react'
 
-const errorsMessages: { [key: string]: string } = {
-	required: 'This field is required',
-	email: 'Invalid email address',
-	phone: 'Invalid phone number'
+type ErrorMessages = {
+	[key: string]: string
+	required: string
 }
 
-type Errors = { [key: string]: string }
-type Touches = { [key: string]: boolean }
+const errorMessages: ErrorMessages = {
+	required: 'This field is required',
+	emailInvalid: 'Invalid email address',
+	phoneInvalid: 'Invalid phone number'
+}
+
+export type Errors = { [key: string]: string }
+export type Touches = { [key: string]: boolean }
 
 export const useCustomErrors = (fields: string[]) => {
 	const [errors, setErrors] = useState<Errors>(
@@ -17,22 +22,36 @@ export const useCustomErrors = (fields: string[]) => {
 		Object.fromEntries(fields.map(x => [x, false]))
 	)
 
-	const setError = (
+	const setFieldError = (field: string, error: string = 'required') => {
+		setErrors(prev => ({ ...prev, [field]: errorMessages[error] }))
+		setTouched(prev => ({ ...prev, [field]: true }))
+	}
+
+	const setFieldErrorOnChange = (
 		e: React.ChangeEvent<HTMLInputElement> | React.FocusEvent<HTMLInputElement>,
 		field: string
 	) => {
 		if (!e.target.value) {
 			setErrors(prev => ({
 				...prev,
-				[field]: errorsMessages.required
+				[field]: errorMessages.required
 			}))
 		} else {
 			setErrors(prev => ({
 				...prev,
-				[field]: e.target.validity.patternMismatch ? errorsMessages[field] : ''
+				[field]: e.target.validity.patternMismatch
+					? errorMessages[field + 'Invalid']
+					: ''
 			}))
 		}
 	}
 
-	return { errors, touched, setError, setErrors, setTouched }
+	return {
+		errors,
+		touched,
+		setFieldErrorOnChange,
+		setErrors,
+		setTouched,
+		setFieldError
+	}
 }

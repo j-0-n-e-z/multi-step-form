@@ -30,9 +30,9 @@ export interface FormItems {
 }
 
 const initialValues: FormItems = {
-	name: 'Stephen King',
-	email: 'stephenking@gmail.com',
-	phone: '+1 890 243 123',
+	name: '',
+	email: '',
+	phone: '',
 	selectedPlan: 'arcade',
 	planDuration: 'monthly',
 	pickedAddOns: {
@@ -46,6 +46,7 @@ const steps = ['your info', 'select plan', 'add-ons', 'summary']
 
 export const Panel: FC = () => {
 	const [formData, setFormData] = useState<FormItems>(initialValues)
+	const [isSubmitted, setIsSubmitted] = useState(false)
 
 	const updateFormData = (fieldsToUpdate: Partial<FormItems>) => {
 		setFormData(prev => ({ ...prev, ...fieldsToUpdate }))
@@ -70,7 +71,11 @@ export const Panel: FC = () => {
 			<Sidebar steps={steps} currentStepIndex={currentStepIndex} />
 			<form onSubmit={handleFormSubmit} className={form.form}>
 				{currentStepIndex === 0 && (
-					<PersonalInfo {...formData} updateFormData={updateFormData} />
+					<PersonalInfo
+						{...formData}
+						updateFormData={updateFormData}
+						isSubmitted={isSubmitted}
+					/>
 				)}
 				{currentStepIndex === 1 && (
 					<SelectPlan {...formData} updateFormData={updateFormData} />
@@ -90,6 +95,7 @@ export const Panel: FC = () => {
 							</button>
 						)}
 						<button
+							onClick={() => setIsSubmitted(true)}
 							type='submit'
 							className={cn(form.goNext, { [form.confirm]: isLastStep })}
 						>
