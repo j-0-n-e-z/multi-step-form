@@ -44,9 +44,9 @@ export const AddOn: FC<AddOnProps> = ({
 				<div className={styles.description}>
 					{addOnsData[addOn].description}
 				</div>
-			<div className={styles.price}>
 			</div>
-				{formatPrice( addOnsData[addOn][planDuration], planDuration)}
+			<div className={styles.price}>
+				{formatPrice(addOnsData[addOn][planDuration], planDuration)}
 			</div>
 		</label>
 	)
