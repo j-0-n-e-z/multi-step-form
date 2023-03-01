@@ -2,9 +2,10 @@ import { FormItems } from '../Panel'
 import cn from 'classnames'
 import { FC } from 'react'
 import styles from './Plan.module.scss'
-import { capitalize, getPricePerPeriodString } from '../../helpers'
 import { plansData } from '../../data/plansData'
 import { Plan as PlanType } from '../Panel'
+import { capitalize } from '../../utils/capitalize'
+import { formatPrice } from '../../utils/formatPrice'
 
 type PlanProps = Pick<FormItems, 'planDuration'> & {
 	plan: PlanType
@@ -28,7 +29,7 @@ export const Plan: FC<PlanProps> = ({
 			</div>
 			<p className={styles.planTitle}>{capitalize(plan)}</p>
 			<p className={styles.price}>
-				{getPricePerPeriodString(planDuration, plansData[plan][planDuration])}
+				{formatPrice(plansData[plan][planDuration], planDuration)}
 			</p>
 			{planDuration !== 'monthly' && (
 				<div className={styles.monthsFree}>2 months free</div>

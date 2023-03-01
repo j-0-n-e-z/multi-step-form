@@ -2,14 +2,12 @@ import { FC } from 'react'
 import styles from './FinishingUp.module.scss'
 import form from '../Form.module.scss'
 import { addOnsData } from '../../data/addOnsData'
-import { AddOn as TAddOn, FormItems } from '../Panel'
-import {
-	breakCamelCase,
-	capitalize,
-	getPricePerPeriodString,
-	getTotalPrice
-} from '../../helpers'
+import { AddOn as AddOnType, FormItems } from '../Panel'
 import { plansData } from '../../data/plansData'
+import { calculateTotalPrice } from '../../utils/calculateTotalPrice'
+import { capitalize } from '../../utils/capitalize'
+import { formatPrice } from '../../utils/formatPrice'
+import { breakCamelCase } from '../../utils/breakCamelCase'
 
 export type AddOnsProps = FormItems & {
 	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
@@ -27,7 +25,11 @@ export const FinishingUp: FC<AddOnsProps> = ({
 		})
 	}
 
-	const totalPrice = getTotalPrice(planDuration, selectedPlan, pickedAddOns)
+	const totalPrice = calculateTotalPrice(
+		selectedPlan,
+		pickedAddOns,
+		planDuration
+	)
 
 	return (
 		<>
@@ -48,29 +50,27 @@ export const FinishingUp: FC<AddOnsProps> = ({
 						</button>
 					</div>
 					<div className={styles.planPrice}>
-						{getPricePerPeriodString(
-							planDuration,
-							plansData[selectedPlan][planDuration]
-						)}
+						{formatPrice(plansData[selectedPlan][planDuration], planDuration)}
 					</div>
 				</div>
 				{Object.values(pickedAddOns).some(Boolean) && (
 					<div className={styles.selectedAddOns}>
-						{(Object.keys(pickedAddOns) as Array<TAddOn>)
-							.filter(addOn => pickedAddOns[addOn])
-							.map(addOn => (
-								<div key={addOn} className={styles.addOn}>
-									<div className={styles.addOnTitle}>
-										{capitalize(breakCamelCase(addOn))}
+						{(Object.keys(pickedAddOns) as AddOnType[]).map(
+							addOn =>
+								pickedAddOns[addOn] && (
+									<div key={addOn} className={styles.addOn}>
+										<div className={styles.addOnTitle}>
+											{capitalize(breakCamelCase(addOn))}
+										</div>
+										<div className={styles.addOnPrice}>
+											{formatPrice(
+												addOnsData[addOn][planDuration],
+												planDuration
+											)}
+										</div>
 									</div>
-									<div className={styles.addOnPrice}>
-										{getPricePerPeriodString(
-											planDuration,
-											addOnsData[addOn][planDuration]
-										)}
-									</div>
-								</div>
-							))}
+								)
+						)}
 					</div>
 				)}
 			</div>
@@ -79,7 +79,7 @@ export const FinishingUp: FC<AddOnsProps> = ({
 					Total (per {planDuration.slice(0, -2)})
 				</div>
 				<div className={styles.totalPrice}>
-					{getPricePerPeriodString(planDuration, totalPrice)}
+					{formatPrice(totalPrice, planDuration)}
 				</div>
 			</div>
 		</>

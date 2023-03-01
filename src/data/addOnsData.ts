@@ -1,10 +1,10 @@
-import { AddOn } from "../components/Panel";
+import { AddOn } from '../components/Panel'
 
 type AddOnsData = {
 	[key in AddOn]: { monthly: number; yearly: number; description: string }
 }
 
-export const addOnsData = {
+export const addOnsData: AddOnsData = {
 	onlineService: {
 		monthly: 1,
 		yearly: 10,

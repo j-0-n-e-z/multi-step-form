@@ -3,7 +3,9 @@ import styles from './AddOn.module.scss'
 import cn from 'classnames'
 import { AddOn as AddOnType, FormItems } from '../Panel'
 import { addOnsData } from '../../data/addOnsData'
-import { breakCamelCase, capitalize, getPricePerPeriodString } from '../../helpers'
+import { capitalize } from '../../utils/capitalize'
+import { breakCamelCase } from '../../utils/breakCamelCase'
+import { formatPrice } from '../../utils/formatPrice'
 
 type AddOnProps = Pick<FormItems, 'planDuration' | 'pickedAddOns'> & {
 	addOn: AddOnType
@@ -42,9 +44,9 @@ export const AddOn: FC<AddOnProps> = ({
 				<div className={styles.description}>
 					{addOnsData[addOn].description}
 				</div>
-			</div>
 			<div className={styles.price}>
-				{getPricePerPeriodString(planDuration, addOnsData[addOn][planDuration])}
+			</div>
+				{formatPrice( addOnsData[addOn][planDuration], planDuration)}
 			</div>
 		</label>
 	)

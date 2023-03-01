@@ -26,7 +26,7 @@ export const PersonalInfo: FC<PersonalInfoProps> = ({
 	}
 
 	const handleOnBlur = (
-		e: React.FocusEvent<HTMLInputElement>,
+		e: React.FocusEvent<HTMLInputElement, Element>,
 		field: string
 	) => {
 		setTouched(prev => ({ ...prev, [field]: true }))

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { FormItems, Plan as TPlan } from '../Panel'
+import { FormItems, Plan as PlanType } from '../Panel'
 import styles from './SelectPlan.module.scss'
 import { Plan } from './Plan'
 import form from '../Form.module.scss'
@@ -23,7 +23,7 @@ export const SelectPlan: FC<SelectPlanProps> = ({
 			</p>
 			<div className={styles.plansWrapper}>
 				<div className={styles.plans}>
-					{(Object.keys(plansData) as Array<TPlan>).map(plan => (
+					{(Object.keys(plansData) as PlanType[]).map(plan => (
 						<Plan
 							key={plan}
 							plan={plan}

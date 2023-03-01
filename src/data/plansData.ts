@@ -4,7 +4,7 @@ type PlansData = {
 	[key in Plan]: { monthly: number; yearly: number }
 }
 
-export const plansData = {
+export const plansData: PlansData = {
 	arcade: {
 		monthly: 9,
 		yearly: 90

@@ -21,7 +21,7 @@ export const PickAddOns: FC<PickAddOnsProps> = ({
 				Add-ons help enhance your gaming experience.
 			</p>
 			<div className={styles.addOns}>
-				{(Object.keys(addOnsData) as Array<AddOnType>).map(addOn => (
+				{(Object.keys(addOnsData) as AddOnType[]).map(addOn => (
 					<AddOn
 						key={addOn}
 						addOn={addOn}
