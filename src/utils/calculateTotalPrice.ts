@@ -1,6 +1,6 @@
-import { AddOn, AddOns, Plan, PlanDuration } from '../components/Panel'
 import { addOnsData } from '../data/addOnsData'
 import { plansData } from '../data/plansData'
+import { AddOn, AddOns, Plan, PlanDuration } from '../types'
 
 export function calculateTotalPrice(
 	selectedPlan: Plan,

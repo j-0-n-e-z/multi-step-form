@@ -2,11 +2,10 @@ import { FC, useEffect } from 'react'
 import styles from './PersonalInfo.module.scss'
 import form from '../Form.module.scss'
 import cn from 'classnames'
-import { FormItems } from '../Panel'
-import { Errors, Touches, useCustomErrors } from '../../hooks/useCustomErrors'
+import { useCustomErrors } from '../../hooks/useCustomErrors'
+import { DefaultProps } from '../../types'
 
-type PersonalInfoProps = FormItems & {
-	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
+type PersonalInfoProps = DefaultProps & {
 	isSubmitted: boolean
 }
 
@@ -17,9 +16,8 @@ export const PersonalInfo: FC<PersonalInfoProps> = ({
 	updateFormData,
 	isSubmitted
 }) => {
-	const fields = ['name', 'email', 'phone']
 	const { errors, touched, setTouched, setFieldErrorOnChange, setFieldError } =
-		useCustomErrors(fields)
+		useCustomErrors(['name', 'email', 'phone'])
 
 	useEffect(() => {
 		if (isSubmitted) {

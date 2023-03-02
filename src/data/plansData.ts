@@ -1,10 +1,6 @@
-import { Plan } from "../components/Panel";
+import { ItemInfo, Plan } from '../types'
 
-type PlansData = {
-	[key in Plan]: { monthly: number; yearly: number }
-}
-
-export const plansData: PlansData = {
+export const plansData: Record<Plan, Omit<ItemInfo, 'description'>> = {
 	arcade: {
 		monthly: 9,
 		yearly: 90

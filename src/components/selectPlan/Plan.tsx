@@ -1,16 +1,14 @@
-import { FormItems } from '../Panel'
 import cn from 'classnames'
 import { FC } from 'react'
 import styles from './Plan.module.scss'
 import { plansData } from '../../data/plansData'
-import { Plan as PlanType } from '../Panel'
 import { capitalize } from '../../utils/capitalize'
 import { formatPrice } from '../../utils/formatPrice'
+import { DefaultProps, FormItems, Plan as TPlan } from '../../types'
 
-type PlanProps = Pick<FormItems, 'planDuration'> & {
-	plan: PlanType
+type PlanProps = Pick<DefaultProps, 'planDuration' | 'updateFormData'> & {
+	plan: TPlan
 	isSelected: boolean
-	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
 }
 
 export const Plan: FC<PlanProps> = ({

@@ -1,22 +1,24 @@
 import { FC } from 'react'
 import styles from './AddOn.module.scss'
 import cn from 'classnames'
-import { AddOn as AddOnType, FormItems } from '../Panel'
 import { addOnsData } from '../../data/addOnsData'
 import { capitalize } from '../../utils/capitalize'
 import { breakCamelCase } from '../../utils/breakCamelCase'
 import { formatPrice } from '../../utils/formatPrice'
+import { AddOn as TAddOn, DefaultProps } from '../../types'
 
-type AddOnProps = Pick<FormItems, 'planDuration' | 'pickedAddOns'> & {
-	addOn: AddOnType
-	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
+type AddOnProps = Pick<
+	DefaultProps,
+	'planDuration' | 'pickedAddOns' | 'updateFormData'
+> & {
+	addOn: TAddOn
 }
 
 export const AddOn: FC<AddOnProps> = ({
 	addOn,
+	planDuration,
 	pickedAddOns,
-	updateFormData,
-	planDuration
+	updateFormData
 }) => {
 	return (
 		<label

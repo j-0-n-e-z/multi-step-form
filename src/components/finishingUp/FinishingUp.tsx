@@ -2,22 +2,18 @@ import { FC } from 'react'
 import styles from './FinishingUp.module.scss'
 import form from '../Form.module.scss'
 import { addOnsData } from '../../data/addOnsData'
-import { AddOn as AddOnType, FormItems } from '../Panel'
 import { plansData } from '../../data/plansData'
 import { calculateTotalPrice } from '../../utils/calculateTotalPrice'
 import { capitalize } from '../../utils/capitalize'
 import { formatPrice } from '../../utils/formatPrice'
 import { breakCamelCase } from '../../utils/breakCamelCase'
+import { AddOn, DefaultProps } from '../../types'
 
-export type AddOnsProps = FormItems & {
-	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
-}
-
-export const FinishingUp: FC<AddOnsProps> = ({
-	planDuration,
-	updateFormData,
+export const FinishingUp: FC<DefaultProps> = ({
 	selectedPlan,
-	pickedAddOns
+	planDuration,
+	pickedAddOns,
+	updateFormData,
 }) => {
 	const handlePlanChange = () => {
 		updateFormData({
@@ -55,7 +51,7 @@ export const FinishingUp: FC<AddOnsProps> = ({
 				</div>
 				{Object.values(pickedAddOns).some(Boolean) && (
 					<div className={styles.selectedAddOns}>
-						{(Object.keys(pickedAddOns) as AddOnType[]).map(
+						{(Object.keys(pickedAddOns) as AddOn[]).map(
 							addOn =>
 								pickedAddOns[addOn] && (
 									<div key={addOn} className={styles.addOn}>

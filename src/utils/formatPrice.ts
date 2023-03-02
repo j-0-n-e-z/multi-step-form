@@ -1,8 +1,8 @@
-import { PlanDuration } from "../components/Panel";
+import { PlanDuration } from "../types";
 
 export function formatPrice(
 	price: number,
-	planDuration: PlanDuration = 'monthly',
+	planDuration: PlanDuration,
 ) {
 	return `+$${price}/${planDuration === 'monthly' ? 'mo' : 'yr'}`
 }

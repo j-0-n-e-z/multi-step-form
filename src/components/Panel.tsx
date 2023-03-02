@@ -9,25 +9,7 @@ import { Sidebar } from './sidebar/Sidebar'
 import { PickAddOns } from './pickAddOns/PickAddOns'
 import { FinishingUp } from './finishingUp/FinishingUp'
 import { ThankYou } from './thankYou/ThankYou'
-
-export type Plan = 'arcade' | 'advanced' | 'pro'
-
-export type AddOn = 'onlineService' | 'largerStorage' | 'customizableProfile'
-
-export type AddOns = {
-	[key in AddOn]: boolean
-}
-
-export type PlanDuration = 'monthly' | 'yearly'
-
-export interface FormItems {
-	name: string
-	email: string
-	phone: string
-	selectedPlan: Plan
-	planDuration: PlanDuration
-	pickedAddOns: AddOns
-}
+import { FormItems } from '../types'
 
 const initialValues: FormItems = {
 	name: '',

@@ -1,11 +1,9 @@
 import { FC } from 'react'
-import { FormItems } from '../Panel'
+import { DefaultProps, FormItems, FormUpdater } from '../../types'
 import styles from './PlanLengthSwitcher.module.scss'
 import cn from 'classnames'
 
-type PlanLengthSwitcherProps = Pick<FormItems, 'planDuration'> & {
-	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
-}
+type PlanLengthSwitcherProps = Pick<DefaultProps, 'planDuration' | 'updateFormData'>
 
 export const PlanLengthSwitcher: FC<PlanLengthSwitcherProps> = ({
 	planDuration,

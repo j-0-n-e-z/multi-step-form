@@ -1,18 +1,13 @@
 import { useState } from 'react'
 
-type ErrorMessages = {
-	[key: string]: string
-	required: string
-}
-
-const errorMessages: ErrorMessages = {
+const errorMessages: Record<string, string> = {
 	required: 'This field is required',
 	emailInvalid: 'Invalid email address',
 	phoneInvalid: 'Invalid phone number'
 }
 
-export type Errors = { [key: string]: string }
-export type Touches = { [key: string]: boolean }
+type Errors = Record<string, string>
+type Touches = Record<string, boolean>
 
 export const useCustomErrors = (fields: string[]) => {
 	const [errors, setErrors] = useState<Errors>(

@@ -3,13 +3,9 @@ import styles from './PickAddOns.module.scss'
 import form from '../Form.module.scss'
 import { AddOn } from './AddOn'
 import { addOnsData } from '../../data/addOnsData'
-import { FormItems, AddOn as AddOnType } from '../Panel'
+import { AddOn as TAddOn, DefaultProps } from '../../types'
 
-export type PickAddOnsProps = FormItems & {
-	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
-}
-
-export const PickAddOns: FC<PickAddOnsProps> = ({
+export const PickAddOns: FC<DefaultProps> = ({
 	pickedAddOns,
 	planDuration,
 	updateFormData
@@ -21,7 +17,7 @@ export const PickAddOns: FC<PickAddOnsProps> = ({
 				Add-ons help enhance your gaming experience.
 			</p>
 			<div className={styles.addOns}>
-				{(Object.keys(addOnsData) as AddOnType[]).map(addOn => (
+				{(Object.keys(addOnsData) as TAddOn[]).map(addOn => (
 					<AddOn
 						key={addOn}
 						addOn={addOn}

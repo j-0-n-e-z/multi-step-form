@@ -1,16 +1,12 @@
 import { FC } from 'react'
-import { FormItems, Plan as PlanType } from '../Panel'
 import styles from './SelectPlan.module.scss'
 import { Plan } from './Plan'
 import form from '../Form.module.scss'
 import { plansData } from '../../data/plansData'
 import { PlanLengthSwitcher } from './PlanLengthSwitcher'
+import { DefaultProps, Plan as TPlan } from '../../types'
 
-type SelectPlanProps = FormItems & {
-	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
-}
-
-export const SelectPlan: FC<SelectPlanProps> = ({
+export const SelectPlan: FC<DefaultProps> = ({
 	selectedPlan,
 	planDuration,
 	updateFormData
@@ -23,7 +19,7 @@ export const SelectPlan: FC<SelectPlanProps> = ({
 			</p>
 			<div className={styles.plansWrapper}>
 				<div className={styles.plans}>
-					{(Object.keys(plansData) as PlanType[]).map(plan => (
+					{(Object.keys(plansData) as TPlan[]).map(plan => (
 						<Plan
 							key={plan}
 							plan={plan}
