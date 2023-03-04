@@ -16,6 +16,8 @@
 }
 
 .formContent {
+	height: 100%;
+	
 	@media (max-width: 640px) {
 		width: 90%;
 		padding: 25px;
@@ -23,6 +25,7 @@
 		margin-top: -50px;
 		background-color: #fff;
 		height: auto;
+		box-shadow: 0 5px 10px #ccc;
 	}
 }
 
