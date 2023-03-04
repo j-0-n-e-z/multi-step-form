@@ -12,28 +12,29 @@ export const SelectPlan: FC<DefaultProps> = ({
 	updateFormData
 }) => {
 	return (
-		<>
+		<div className={form.formContent}>
 			<div className={form.title}>Select your plan</div>
 			<p className={form.description}>
 				You have the option of monthly or yearly billing.
 			</p>
 			<div className={styles.plansWrapper}>
 				<div className={styles.plans}>
-					{(Object.keys(plansData) as TPlan[]).map(plan => (
-						<Plan
-							key={plan}
-							plan={plan}
-							isSelected={plan === selectedPlan}
-							planDuration={planDuration}
-							updateFormData={updateFormData}
-						/>
-					))}
+					{(Object.keys(plansData) as TPlan[])
+						.map(plan => (
+							<Plan
+								key={plan}
+								plan={plan}
+								isSelected={plan === selectedPlan}
+								planDuration={planDuration}
+								updateFormData={updateFormData}
+							/>
+						))}
 				</div>
 				<PlanLengthSwitcher
 					planDuration={planDuration}
 					updateFormData={updateFormData}
 				/>
 			</div>
-		</>
+		</div>
 	)
 }

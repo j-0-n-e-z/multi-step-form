@@ -9,6 +9,10 @@
 	width: 100%;
 	background-color: var(--primary-light);
 	border-radius: 5px;
+
+	@media (max-width: 640px) {
+		margin-top: 20px;
+	}
 }
 
 .switcher {

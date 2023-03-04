@@ -17,6 +17,10 @@
 	flex-direction: column;
 	align-items: start;
 	font-weight: 500;
+
+	@media (max-width: 640px) {
+		font-size: 15px;
+	}
 }
 
 .changePlan {
@@ -40,6 +44,10 @@
 	align-items: center;
 	font-weight: bold;
 	color: var(--dark-blue);
+
+	@media (max-width: 640px) {
+		font-size: 15px;
+	}
 }
 
 .selectedAddOns {
@@ -55,6 +63,10 @@
 .addOnTitle {
 	font-size: 15px;
 	color: #999;
+
+	@media (max-width: 640px) {
+		font-size: 13px;
+	}
 }
 
 .addOnPrice {
@@ -67,16 +79,28 @@
 	justify-content: space-between;
 	margin-top: 50px;
 	padding: 0 20px;
+
+	@media (max-width: 640px) {
+		margin-top: 30px;
+	}
 }
 
 .totalTitle {
 	font-size: 15px;
 	color: #999;
+
+	@media (max-width: 640px) {
+		font-size: 13px;
+	}
 }
 
 .totalPrice {
 	font-size: 20px;
 	color: var(--primary);
 	font-weight: bold;
+
+	@media (max-width: 640px) {
+		font-size: 16px;
+	}
 }
 

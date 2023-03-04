@@ -1,6 +1,6 @@
-import { ItemInfo, Plan } from '../types'
+import { Plan, PlanInfo } from '../types'
 
-export const plansData: Record<Plan, Omit<ItemInfo, 'description'>> = {
+export const plansData: Record<Plan, PlanInfo> = {
 	arcade: {
 		monthly: 9,
 		yearly: 90

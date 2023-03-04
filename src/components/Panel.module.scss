@@ -7,4 +7,11 @@
   box-shadow: 1px 1px 5px hsl(229, 24%, 87%);
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 640px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+  }
 }

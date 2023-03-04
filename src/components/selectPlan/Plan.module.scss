@@ -17,23 +17,48 @@
 		border: 1px solid var(--primary);
 		background-color: hsla(243, 100%, 62%, 15%);
 	}
+
+	@media (max-width: 640px) {
+		width: 100%;
+		flex-direction: row;
+		padding: 15px;
+	}
 }
 
-.planIcon {
-	height: 85px;
+.icon {
+	width: 40px;
+	margin-bottom: 60px;
+
+	@media (max-width: 640px) {
+		margin-bottom: auto;
+	}
 }
 
-.planTitle {
+.info {
+	@media (max-width: 640px) {
+		margin-left: 15px;
+	}
+}
+
+.title {
 	font-size: 20px;
 	font-weight: 500;
 	margin: 0;
 	margin-bottom: 5px;
+
+	@media (max-width: 640px) {
+		font-size: 16px;
+	}
 }
 
 .price {
 	margin: 0;
 	color: var(--grey);
 	font-size: 16px;
+
+	@media (max-width: 640px) {
+		font-size: 14px;
+	}
 }
 
 .selected {
@@ -44,4 +69,9 @@
 .monthsFree {
 	font-size: 13px;
 	margin-top: 10px;
+
+	@media (max-width: 640px) {
+		font-size: 12px;
+		margin-top: 5px;
+	}
 }

@@ -44,7 +44,7 @@ export const PersonalInfo: FC<PersonalInfoProps> = ({
 	}
 
 	return (
-		<>
+		<div className={form.formContent}>
 			<div className={form.title}>Personal Info</div>
 			<p className={form.description}>
 				Please provide your name, email address, and phone number.
@@ -109,6 +109,6 @@ export const PersonalInfo: FC<PersonalInfoProps> = ({
 				pattern='\+?\d( ?)\d{3}\1\d{3}\1\d{3}'
 				required
 			/>
-		</>
+		</div>
 	)
 }

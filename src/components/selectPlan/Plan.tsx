@@ -22,16 +22,21 @@ export const Plan: FC<PlanProps> = ({
 			className={cn(styles.plan, { [styles.selected]: isSelected })}
 			htmlFor={plan}
 		>
-			<div className={styles.planIcon}>
-				<img src={`./images/plans/icon-${plan}.svg`} alt={plan} />
+			<img
+				className={styles.icon}
+				src={`./images/plans/icon-${plan}.svg`}
+				alt={plan}
+			/>
+			<div className={styles.info}>
+				<p className={styles.title}>{capitalize(plan)}</p>
+				<p className={styles.price}>
+					{formatPrice(plansData[plan][planDuration], planDuration).slice(1)}
+				</p>
+				{planDuration !== 'monthly' && (
+					<div className={styles.monthsFree}>2 months free</div>
+				)}
 			</div>
-			<p className={styles.planTitle}>{capitalize(plan)}</p>
-			<p className={styles.price}>
-				{formatPrice(plansData[plan][planDuration], planDuration)}
-			</p>
-			{planDuration !== 'monthly' && (
-				<div className={styles.monthsFree}>2 months free</div>
-			)}
+
 			<input
 				id={plan}
 				name='plan'

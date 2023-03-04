@@ -1,6 +1,6 @@
-import { AddOn, ItemInfo } from "../types"
+import { AddOn, AddOnInfo } from "../types"
 
-export const addOnsData: Record<AddOn, ItemInfo> = {
+export const addOnsData: Record<AddOn, AddOnInfo> = {
 	onlineService: {
 		monthly: 1,
 		yearly: 10,

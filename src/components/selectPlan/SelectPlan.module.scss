@@ -1,10 +1,18 @@
 .plansWrapper {
 	height: 300px;
+
+	@media (max-width: 640px) {
+		height: auto;
+	}
 }
 
 .plans {
 	margin-top: 20px;
 	display: flex;
 	justify-content: space-between;
-}
 
+	@media (max-width: 640px) {
+		flex-direction: column;
+		gap: 15px;
+	}
+}

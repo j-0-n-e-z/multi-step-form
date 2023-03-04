@@ -1,10 +1,10 @@
 import { FC } from 'react'
-import styles from './AddOn.module.scss'
 import cn from 'classnames'
+import styles from './AddOn.module.scss'
 import { addOnsData } from '../../data/addOnsData'
 import { capitalize } from '../../utils/capitalize'
-import { breakCamelCase } from '../../utils/breakCamelCase'
 import { formatPrice } from '../../utils/formatPrice'
+import { breakCamelCase } from '../../utils/breakCamelCase'
 import { AddOn as TAddOn, DefaultProps } from '../../types'
 
 type AddOnProps = Pick<

@@ -6,9 +6,12 @@ export type AddOns = Record<AddOn, boolean>
 
 export type PlanDuration = 'monthly' | 'yearly'
 
-export type ItemInfo = {
+export type PlanInfo = {
 	monthly: number
 	yearly: number
+}
+
+export type AddOnInfo = PlanInfo & {
 	description: string
 }
 
@@ -21,8 +24,6 @@ export interface FormItems {
 	pickedAddOns: AddOns
 }
 
-export type FormUpdater = {
+export type DefaultProps = FormItems & {
 	updateFormData: (fieldsToUpdate: Partial<FormItems>) => void
 }
-
-export type DefaultProps = FormItems & FormUpdater

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { DefaultProps, FormItems, FormUpdater } from '../../types'
+import { DefaultProps } from '../../types'
 import styles from './PlanLengthSwitcher.module.scss'
 import cn from 'classnames'
 

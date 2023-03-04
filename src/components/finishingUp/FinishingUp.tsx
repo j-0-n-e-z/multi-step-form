@@ -13,7 +13,7 @@ export const FinishingUp: FC<DefaultProps> = ({
 	selectedPlan,
 	planDuration,
 	pickedAddOns,
-	updateFormData,
+	updateFormData
 }) => {
 	const handlePlanChange = () => {
 		updateFormData({
@@ -28,7 +28,7 @@ export const FinishingUp: FC<DefaultProps> = ({
 	)
 
 	return (
-		<>
+		<div className={form.formContent}>
 			<div className={form.title}>Finishing Up</div>
 			<p className={form.description}>
 				Double-check everything looks OK before confirming.
@@ -78,6 +78,6 @@ export const FinishingUp: FC<DefaultProps> = ({
 					{formatPrice(totalPrice, planDuration)}
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }
