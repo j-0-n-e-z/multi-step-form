@@ -6,7 +6,7 @@ import { useCustomErrors } from '../../hooks/useCustomErrors'
 import { DefaultProps } from '../../types'
 
 type PersonalInfoProps = DefaultProps & {
-	isSubmitted: boolean
+	isSubmitTried: boolean
 }
 
 export const PersonalInfo: FC<PersonalInfoProps> = ({
@@ -14,18 +14,18 @@ export const PersonalInfo: FC<PersonalInfoProps> = ({
 	email,
 	phone,
 	updateFormData,
-	isSubmitted
+	isSubmitTried
 }) => {
 	const { errors, touched, setTouched, setFieldErrorOnChange, setFieldError } =
 		useCustomErrors(['name', 'email', 'phone'])
 
 	useEffect(() => {
-		if (isSubmitted) {
+		if (isSubmitTried) {
 			if (!name) setFieldError('name')
 			if (!email) setFieldError('email')
 			if (!phone) setFieldError('phone')
 		}
-	}, [isSubmitted])
+	}, [isSubmitTried])
 
 	const handleOnChange = (
 		e: React.ChangeEvent<HTMLInputElement>,

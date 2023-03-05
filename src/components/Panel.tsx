@@ -28,7 +28,7 @@ const steps = ['your info', 'select plan', 'add-ons', 'summary']
 
 export const Panel: FC = () => {
 	const [formData, setFormData] = useState<FormItems>(initialValues)
-	const [isSubmitted, setIsSubmitted] = useState(false)
+	const [isSubmitTried, setIsSubmitTried] = useState(false)
 
 	const updateFormData = (fieldsToUpdate: Partial<FormItems>) => {
 		setFormData(prev => ({ ...prev, ...fieldsToUpdate }))
@@ -56,7 +56,7 @@ export const Panel: FC = () => {
 					<PersonalInfo
 						{...formData}
 						updateFormData={updateFormData}
-						isSubmitted={isSubmitted}
+						isSubmitTried={isSubmitTried}
 					/>
 				)}
 				{currentStepIndex === 1 && (
@@ -77,7 +77,7 @@ export const Panel: FC = () => {
 							</button>
 						)}
 						<button
-							onClick={() => setIsSubmitted(true)}
+							onClick={() => setIsSubmitTried(true)}
 							type='submit'
 							className={cn(form.goNext, { [form.confirm]: isLastStep })}
 						>
