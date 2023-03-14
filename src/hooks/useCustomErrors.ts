@@ -1,24 +1,24 @@
 import { useState } from 'react'
 
-const errorMessages: Record<string, string> = {
+const errorMessages = {
 	required: 'This field is required',
 	emailInvalid: 'Invalid email address',
 	phoneInvalid: 'Invalid phone number'
-}
+} as const
 
 type Errors = Record<string, string>
 type Touches = Record<string, boolean>
 
-export const useCustomErrors = (fields: string[]) => {
+export const useCustomErrors = (fields: Array<string>) => {
 	const [errors, setErrors] = useState<Errors>(
-		Object.fromEntries(fields.map(x => [x, '']))
+		Object.fromEntries(fields.map(field => [field, '']))
 	)
 	const [touched, setTouched] = useState<Touches>(
-		Object.fromEntries(fields.map(x => [x, false]))
+		Object.fromEntries(fields.map(field => [field, false]))
 	)
 
-	const setFieldError = (field: string, error: string = 'required') => {
-		setErrors(prev => ({ ...prev, [field]: errorMessages[error] }))
+	const setFieldRequiredError = (field: string) => {
+		setErrors(prev => ({ ...prev, [field]: errorMessages.required }))
 		setTouched(prev => ({ ...prev, [field]: true }))
 	}
 
@@ -27,18 +27,19 @@ export const useCustomErrors = (fields: string[]) => {
 		field: string
 	) => {
 		if (!e.target.value) {
+			setFieldRequiredError(field)
+		} else if (e.target.validity.patternMismatch) {
 			setErrors(prev => ({
 				...prev,
-				[field]: errorMessages.required
+				[field]: Object.values(errorMessages).find(message => message.includes(field))!
 			}))
 		} else {
-			setErrors(prev => ({
-				...prev,
-				[field]: e.target.validity.patternMismatch
-					? errorMessages[field + 'Invalid']
-					: ''
-			}))
+			clearFieldError(field)
 		}
+	}
+
+	const clearFieldError = (field: string) => {
+		setErrors(prev => ({ ...prev, [field]: '' }))
 	}
 
 	return {
@@ -47,6 +48,6 @@ export const useCustomErrors = (fields: string[]) => {
 		setFieldErrorOnChange,
 		setErrors,
 		setTouched,
-		setFieldError
+		setFieldRequiredError
 	}
 }

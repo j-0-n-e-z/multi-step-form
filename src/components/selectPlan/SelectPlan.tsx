@@ -4,7 +4,7 @@ import { Plan } from './Plan'
 import form from '../Form.module.scss'
 import { plansData } from '../../data/plansData'
 import { PlanLengthSwitcher } from './PlanLengthSwitcher'
-import { DefaultProps, Plan as TPlan } from '../../types'
+import { DefaultProps, SelectedPlan } from '../../types'
 
 export const SelectPlan: FC<DefaultProps> = ({
 	selectedPlan,
@@ -19,16 +19,15 @@ export const SelectPlan: FC<DefaultProps> = ({
 			</p>
 			<div className={styles.plansWrapper}>
 				<div className={styles.plans}>
-					{(Object.keys(plansData) as TPlan[])
-						.map(plan => (
-							<Plan
-								key={plan}
-								plan={plan}
-								isSelected={plan === selectedPlan}
-								planDuration={planDuration}
-								updateFormData={updateFormData}
-							/>
-						))}
+					{(Object.keys(plansData) as Array<SelectedPlan>).map(plan => (
+						<Plan
+							key={plan}
+							plan={plan}
+							isSelected={plan === selectedPlan}
+							planDuration={planDuration}
+							updateFormData={updateFormData}
+						/>
+					))}
 				</div>
 				<PlanLengthSwitcher
 					planDuration={planDuration}

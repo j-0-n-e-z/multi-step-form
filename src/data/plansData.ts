@@ -1,6 +1,4 @@
-import { Plan, PlanInfo } from '../types'
-
-export const plansData: Record<Plan, PlanInfo> = {
+export const plansData = {
 	arcade: {
 		monthly: 9,
 		yearly: 90
@@ -13,4 +11,4 @@ export const plansData: Record<Plan, PlanInfo> = {
 		monthly: 15,
 		yearly: 150
 	}
-}
+} as const

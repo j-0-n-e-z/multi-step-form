@@ -1,27 +1,25 @@
-export type Plan = 'arcade' | 'advanced' | 'pro'
+import { addOnsData } from './data/addOnsData'
+import { plansData } from './data/plansData'
 
-export type AddOn = 'onlineService' | 'largerStorage' | 'customizableProfile'
+export type SelectedPlan = keyof typeof plansData
 
-export type AddOns = Record<AddOn, boolean>
+export type SelectedAddOn = keyof typeof addOnsData
 
-export type PlanDuration = 'monthly' | 'yearly'
+export type PickedAddOns = Record<SelectedAddOn, boolean>
 
-export type PlanInfo = {
-	monthly: number
-	yearly: number
-}
+const { arcade, advanced, pro } = plansData
 
-export type AddOnInfo = PlanInfo & {
-	description: string
-}
+export type PlanDuration = keyof typeof arcade &
+	keyof typeof advanced &
+	keyof typeof pro
 
 export interface FormItems {
 	name: string
 	email: string
 	phone: string
-	selectedPlan: Plan
+	selectedPlan: SelectedPlan
 	planDuration: PlanDuration
-	pickedAddOns: AddOns
+	pickedAddOns: PickedAddOns
 }
 
 export type DefaultProps = FormItems & {

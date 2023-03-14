@@ -1,6 +1,4 @@
-import { AddOn, AddOnInfo } from "../types"
-
-export const addOnsData: Record<AddOn, AddOnInfo> = {
+export const addOnsData = {
 	onlineService: {
 		monthly: 1,
 		yearly: 10,
@@ -16,4 +14,4 @@ export const addOnsData: Record<AddOn, AddOnInfo> = {
 		yearly: 20,
 		description: 'Custom theme on your profile'
 	}
-}
+} as const

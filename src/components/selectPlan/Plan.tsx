@@ -4,10 +4,10 @@ import styles from './Plan.module.scss'
 import { plansData } from '../../data/plansData'
 import { capitalize } from '../../utils/capitalize'
 import { formatPrice } from '../../utils/formatPrice'
-import { DefaultProps, FormItems, Plan as TPlan } from '../../types'
+import { DefaultProps, SelectedPlan } from '../../types'
 
 type PlanProps = Pick<DefaultProps, 'planDuration' | 'updateFormData'> & {
-	plan: TPlan
+	plan: SelectedPlan
 	isSelected: boolean
 }
 

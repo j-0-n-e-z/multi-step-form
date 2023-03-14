@@ -5,13 +5,13 @@ import { addOnsData } from '../../data/addOnsData'
 import { capitalize } from '../../utils/capitalize'
 import { formatPrice } from '../../utils/formatPrice'
 import { breakCamelCase } from '../../utils/breakCamelCase'
-import { AddOn as TAddOn, DefaultProps } from '../../types'
+import { SelectedAddOn, DefaultProps } from '../../types'
 
 type AddOnProps = Pick<
 	DefaultProps,
 	'planDuration' | 'pickedAddOns' | 'updateFormData'
 > & {
-	addOn: TAddOn
+	addOn: SelectedAddOn
 }
 
 export const AddOn: FC<AddOnProps> = ({

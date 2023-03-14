@@ -16,15 +16,19 @@ export const PersonalInfo: FC<PersonalInfoProps> = ({
 	updateFormData,
 	isSubmitTried
 }) => {
-	const { errors, touched, setTouched, setFieldErrorOnChange, setFieldError } =
-		useCustomErrors(['name', 'email', 'phone'])
+	const {
+		errors,
+		touched,
+		setTouched,
+		setFieldErrorOnChange,
+		setFieldRequiredError
+	} = useCustomErrors(['name', 'email', 'phone'])
 
 	useEffect(() => {
-		if (isSubmitTried) {
-			if (!name) setFieldError('name')
-			if (!email) setFieldError('email')
-			if (!phone) setFieldError('phone')
-		}
+		if (!isSubmitTried) return
+		if (!name) setFieldRequiredError('name')
+		if (!email) setFieldRequiredError('email')
+		if (!phone) setFieldRequiredError('phone')
 	}, [isSubmitTried])
 
 	const handleOnChange = (

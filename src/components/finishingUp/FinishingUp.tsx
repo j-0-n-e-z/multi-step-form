@@ -7,7 +7,7 @@ import { calculateTotalPrice } from '../../utils/calculateTotalPrice'
 import { capitalize } from '../../utils/capitalize'
 import { formatPrice } from '../../utils/formatPrice'
 import { breakCamelCase } from '../../utils/breakCamelCase'
-import { AddOn, DefaultProps } from '../../types'
+import { SelectedAddOn, DefaultProps } from '../../types'
 
 export const FinishingUp: FC<DefaultProps> = ({
 	selectedPlan,
@@ -51,7 +51,7 @@ export const FinishingUp: FC<DefaultProps> = ({
 				</div>
 				{Object.values(pickedAddOns).some(Boolean) && (
 					<div className={styles.selectedAddOns}>
-						{(Object.keys(pickedAddOns) as AddOn[]).map(
+						{(Object.keys(pickedAddOns) as Array<SelectedAddOn>).map(
 							addOn =>
 								pickedAddOns[addOn] && (
 									<div key={addOn} className={styles.addOn}>

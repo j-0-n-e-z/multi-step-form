@@ -3,7 +3,7 @@ import styles from './Sidebar.module.scss'
 import cn from 'classnames'
 
 type SidebarProps = {
-	steps: string[]
+	steps: Array<string>
 	currentStepIndex: number
 }
 

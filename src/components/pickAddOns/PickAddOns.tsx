@@ -3,7 +3,7 @@ import { AddOn } from './AddOn'
 import form from '../Form.module.scss'
 import styles from './PickAddOns.module.scss'
 import { addOnsData } from '../../data/addOnsData'
-import { AddOn as TAddOn, DefaultProps } from '../../types'
+import { SelectedAddOn, DefaultProps } from '../../types'
 
 export const PickAddOns: FC<DefaultProps> = ({
 	pickedAddOns,
@@ -17,7 +17,7 @@ export const PickAddOns: FC<DefaultProps> = ({
 				Add-ons help enhance your gaming experience.
 			</p>
 			<div className={styles.addOns}>
-				{(Object.keys(addOnsData) as TAddOn[]).map(addOn => (
+				{(Object.keys(addOnsData) as Array<SelectedAddOn>).map(addOn => (
 					<AddOn
 						key={addOn}
 						addOn={addOn}

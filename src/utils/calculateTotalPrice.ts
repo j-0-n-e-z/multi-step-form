@@ -1,16 +1,23 @@
 import { addOnsData } from '../data/addOnsData'
 import { plansData } from '../data/plansData'
-import { AddOn, AddOns, Plan, PlanDuration } from '../types'
+import {
+	SelectedAddOn,
+	PickedAddOns,
+	SelectedPlan,
+	PlanDuration
+} from '../types'
 
 export function calculateTotalPrice(
-	selectedPlan: Plan,
-	pickedAddOns: AddOns,
+	selectedPlan: SelectedPlan,
+	pickedAddOns: PickedAddOns,
 	planDuration: PlanDuration
 ): number {
 	const planPrice = plansData[selectedPlan][planDuration]
-	const addOnsPrice = (Object.keys(pickedAddOns) as AddOn[]).reduce(
+	const addOnsPrice = (
+		Object.keys(pickedAddOns) as Array<SelectedAddOn>
+	).reduce(
 		(sum, addOn) =>
-			sum + (pickedAddOns[addOn] ? addOnsData[addOn][planDuration] : 0),
+			pickedAddOns[addOn] ? sum + addOnsData[addOn][planDuration] : sum,
 		0
 	)
 
